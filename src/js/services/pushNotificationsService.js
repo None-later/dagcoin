@@ -17,12 +17,8 @@
                                         configService, $timeout, $state, ENV) => {
     const root = {};
     const usePushNotifications = Device.cordova && !Device.windows;
-    const constants = require('core/constants.js');
-    const isProduction = !constants.version.match(/t$/);
 
-    // For now if system is in product push notifications disabled.
-    // After product hub is established remove !isProduction control.
-    root.pushIsAvailableOnSystem = usePushNotifications && !isProduction;
+    root.pushIsAvailableOnSystem = usePushNotifications;
     root.pushProjectNumberReceived = false;
 
     let projectNumber;

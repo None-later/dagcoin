@@ -60,7 +60,7 @@ android-prod-tn:
 android-debug-fast:
 	cordova/build.sh ANDROID dagcoin --clear live
 #	cp ./etc/beep.ogg ./cordova/project/plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/raw/beep.ogg
-	cd ../byteballbuilds/project-ANDROID && cordova run android --device
+	cd ./cordova/project-ANDROID && cordova run android --device
 #	cd ../byteballbuilds/project-ANDROID && cordova build android
 
 android-debug-fast-tn:

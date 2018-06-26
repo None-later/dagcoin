@@ -127,7 +127,7 @@ if [ ! -d $PROJECT ]; then
 	cordova plugin add cordova-plugin-x-toast && cordova prepare
 	checkOK
 
-	phonegap local plugin add https://github.com/ibnclaudius/CordovaClipboard
+	cordova plugin add cordova-clipboard
 	checkOK
 
 	cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git && cordova prepare
