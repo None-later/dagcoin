@@ -174,9 +174,6 @@ if [ ! -d $PROJECT ]; then
 	  checkOK
 	fi
 
-	cordova plugin add cordova-universal-links-plugin
-	checkOK
-
 fi
 
 if $DBGJS

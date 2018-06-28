@@ -30,7 +30,7 @@ if [ "$(uname)" == "Darwin" ]; then
  Action=dmg
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if [ "$1" == "testnet" ]; then
-    PackagePath='../byteballbuilds/dagcoin-TN-wallet/linux64/'
+    PackagePath='../byteballbuilds/DagWallet-tn/linux64/'
     Action=linux64:testnet
   else
     PackagePath='../byteballbuilds/DagWallet/linux64/'
