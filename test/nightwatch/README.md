@@ -31,7 +31,7 @@ This project is powered by Nightwatch.js
 
 - Setup android studio and install Android Emulator NB! SDK_25 only! newer versions might have problems and are not tested yet
 
-# CONFIGURE .ENV in tests root directory
+# CONFIGURE .ENV in nightwatch root directory
 
 ```json
 #NW.js PATH
