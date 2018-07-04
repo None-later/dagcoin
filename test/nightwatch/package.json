@@ -1,0 +1,45 @@
+{
+	"name": "minimal",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"downloads": "rimraf ./src/downloads/*",
+		"lint": "tslint src/**/*.ts",
+		"build": "rimraf build && tsc",
+		"prettier": "prettier --trailing-comma all --single-quote --use-tabs --no-bracket-spacing --print-width 120 --write src/**/*.ts",
+		"start-desktop": "yarn build && cross-env NODE_CONFIG_DIR=./build/config nightwatch -e nwjs --config=build/nightwatch.conf.js",
+		"start-android": "yarn build && cross-env NODE_CONFIG_DIR=./build/config nightwatch -e appiumapp --config=build/mobile.conf.js",
+		"precommit": "yarn prettier",
+		"selenium-setup": "node node_modules/selenium-standalone/bin/selenium-standalone install --config=./src/selenium-config.ts"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/dotenv": "^4.0.3",
+		"http-server": "^0.11.1",
+		"husky": "^0.14.3",
+		"prettier": "^1.5.3",
+		"replace": "^0.3.0",
+		"rimraf": "^2.6.2",
+		"tslint": "^5.6.0",
+		"tslint-config-prettier": "^1.3.0",
+		"tslint-eslint-rules": "^4.1.1",
+		"typescript": "^2.4.2"
+	},
+	"dependencies": {
+		"@types/chalk": "^0.4.31",
+		"@types/config": "^0.0.32",
+		"@types/node": "^8.0.23",
+		"chalk": "^1.1.3",
+		"config": "^1.26.2",
+		"cross-env": "^5.0.5",
+		"dotenv": "^6.0.0",
+		"dotenv-extended": "^2.0.2",
+		"nightwatch": "^0.9.21",
+		"nw-chromedriver": "^2.36.0",
+		"path": "^0.12.7",
+		"selenium-standalone": "^6.5.0",
+		"testarmada-nightwatch-extra": "^5.1.0"
+	}
+}
