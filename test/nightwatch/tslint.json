@@ -1,0 +1,13 @@
+{
+	"extends": ["tslint:latest", "tslint-eslint-rules", "tslint-config-prettier"],
+	"defaultSeverity": "error",
+	"tslint.autoFixOnSave": true,
+	"jsRules": {},
+	"rules": {
+		"no-console": [false],
+		"object-literal-sort-keys": [false],
+		"quotemark": [true, "single"]
+	},
+	"rulesDirectory": []
+	
+}
