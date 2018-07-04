@@ -15,7 +15,7 @@ This project is powered by Nightwatch.js
 
 - ```git clone``` [Clone repository]
 - ```yarn``` [Install all dependencies described in package.json]
-- ```yarn selenium-setup``` [Install selenium dependencies such as server and webdriver ]
+- ```yarn selenium-setup``` [Install selenium dependencies such as server and webdriver NB! NW JS SDK must be installed before starting tests + .env configured ]
 - ```yarn start-desktop``` [Run tests in NW.js container]
 - ```yarn start-android``` [Run tests in android emulator]
 - ```export ENV_URL='http://{YourEnvironmentUrl}.ee/'``` [Set env url for tests]
@@ -27,7 +27,7 @@ This project is powered by Nightwatch.js
 - ```http_proxy=http://127.0.0.1:8787 nw install 0.31.4-sdk```
 
 # APPIUM AND ANDROID EMULATOR 
-- ```npm install -g appium@1.6.5``` [Install appium, 1.6.5 has been tested at current build and is working properly, newer versions may have problems with context switching to WEBVIEW]
+- ```CHROMEDRIVER_VERSION=2.28 npm install appium@1.8.0 -g``` [Install appium, 1.6.5 has been tested at current build and is working properly, newer versions may have problems with context switching to WEBVIEW]
 
 - Setup android studio and install Android Emulator NB! SDK_25 only! newer versions might have problems and are not tested yet
 
