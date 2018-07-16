@@ -36,11 +36,19 @@ This project is powered by Nightwatch.js
 ```json
 #NW.js PATH
 NW_CHROMEDRIVER='/home/{user}/.nwjs/0.31.4-sdk/chromedriver'
-NW_APP='{PATH TO NW APP ROOT}'
+NW_APP='/home/{user}/Projects/dag-wallet'
 #APPIUM
-APP_APK='{PATH TO APK FILE}'
+APP_APK='{apk path - local + http+https paths are supported}'
 ANDROID_PLATFORM='7.1'
 DEVICE_NAME='emulator-5554'
+
+#SELENIUM
+SELENIUM_HOST='{OPTIONAL: desired selenium host}'
+SELENIUM_PORT='{OPTIONAL: desired selenium port}'
+GRID_USER='USER'
+GRID_SECRET='SECRET'
+USE_SSL={OPTIONAL: if using 443 port and SSL then true, else false/undefined}
+
 
 ```   
   
