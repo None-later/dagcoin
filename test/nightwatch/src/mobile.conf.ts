@@ -30,8 +30,11 @@ const settings: NightWatchOptions = {
 	},
 	test_settings: {
 		default: {
-			selenium_host: 'localhost',
-			selenium_port: 4723,
+			selenium_host: process.env.SELENIUM_HOST || 'localhost',
+			selenium_port: process.env.SELENIUM_PORT || '4723',
+			username: process.env.GRID_USER || '',
+			access_key:process.env.GRID_SECRET || '',
+			use_ssl: process.env.USE_SSL || false,
 			silent: true,
 			output: true,
 			disable_colors: true,
@@ -46,24 +49,7 @@ const settings: NightWatchOptions = {
 			end_session_on_fail: true,
 			skip_testcases_on_fail: true,
 		},
-		appiumapp:{
-			desiredCapabilities: {
-					app: '/home/viljar/Downloads/android-debug.apk',
-					platformVersion: '7.1',
-					platformName: 'Android',
-					deviceName: 'emulator-5554',
-					clearSystemFiles:true,
-			},
-			selenium: {
-					start_process: false
-			},
-			appium: {
-				  autoWebview: true,
-					start_process: true,
-					clearSystemFiles:true,
-					fullReset: true
-			}
-		},
+
 	},
 	test_workers: {
 		enabled: false,

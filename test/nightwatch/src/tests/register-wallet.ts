@@ -2,12 +2,11 @@ import {NightWatchClient} from 'nightwatch';
 
 // let recipientAddress: string;
 
-export default {
+export const registerWallet =  {
 	'Test mobile': (client: NightWatchClient): void => {
 		// const global: NightWatchClient = client.page.globalPage();
 		const platform: any = client.options.desiredCapabilities.platformName;
 		client.useXpath();
-
 		switch (platform) {
 			case 'Android':
 				client.setContext('WEBVIEW_org.dagcoin.client');

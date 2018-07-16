@@ -247,7 +247,7 @@
 		selenium_host?: string /**
      * The port number on which the selenium server is accepting connections.
      */;
-		selenium_port?: number /**
+		selenium_port?: any /**
      * Whether to show extended Selenium command logs.
      */;
 		silent?: boolean /**
@@ -307,6 +307,9 @@
      * Use xpath as the default locator strategy
      */;
 		use_xpath?: boolean /**
+     * Same as Selenium settings cli_args. You can override the global cli_args on a per-environment basis.
+     */;
+    use_ssl?: any /**
      * Same as Selenium settings cli_args. You can override the global cli_args on a per-environment basis.
      */;
 		cli_args?: any /**
