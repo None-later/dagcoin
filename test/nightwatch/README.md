@@ -23,11 +23,11 @@ This project is powered by Nightwatch.js
 # NW.js setup:
 ## Commands
 - ```npm install nwjs -g``` [Install NW version manager]
-- ```http_proxy=http://127.0.0.1:8787 nw install 0.31.4-sdk``` [Install NW version manager]
-- ```http_proxy=http://127.0.0.1:8787 nw install 0.31.4-sdk```
+- ```nw install 0.24.3-sdk``` [Install NW version manager]
+- ```http_proxy=http://127.0.0.1:8787 nw install 0.24.3-sdk```
 
 # APPIUM AND ANDROID EMULATOR 
-- ```CHROMEDRIVER_VERSION=2.28 npm install appium@1.8.0 -g``` [Install appium, 1.6.5 has been tested at current build and is working properly, newer versions may have problems with context switching to WEBVIEW]
+- ```CHROMEDRIVER_VERSION=2.28 npm install appium@1.8.0 -g``` [Install appium, 1.8.0 has been tested at current build and is working properly, newer versions may have problems with context switching to WEBVIEW]
 
 - Setup android studio and install Android Emulator NB! SDK_25 only! newer versions might have problems and are not tested yet
 
@@ -35,7 +35,7 @@ This project is powered by Nightwatch.js
 
 ```json
 #NW.js PATH
-NW_CHROMEDRIVER='/home/{user}/.nwjs/0.31.4-sdk/chromedriver'
+NW_CHROMEDRIVER='/home/{user}/.nwjs/0.24.3-sdk/chromedriver'
 NW_APP='/home/{user}/Projects/dag-wallet'
 #APPIUM
 APP_APK='{apk path - local + http+https paths are supported}'
