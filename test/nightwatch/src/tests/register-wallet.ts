@@ -2,7 +2,7 @@ import {NightWatchClient} from 'nightwatch';
 
 // let recipientAddress: string;
 
-export const registerWallet =  {
+export const registerWallet = {
 	'Test mobile': (client: NightWatchClient): void => {
 		// const global: NightWatchClient = client.page.globalPage();
 		const platform: any = client.options.desiredCapabilities.platformName;
