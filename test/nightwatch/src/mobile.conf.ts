@@ -51,10 +51,13 @@ const settings: NightWatchOptions = {
 		},
 		appiumapp:{
 			desiredCapabilities: {
-					app: process.env.APP_APK,
-					platformVersion: '7.1',
-					platformName: process.env.ANDROID_PLATFORM,
-					deviceName: process.env.DEVICE_NAME,
+					browserName: 'android',
+					app: process.env.APP_APK ||'http://973271c2.ngrok.io/android-debug.apk',
+					platformVersion: process.env.ANDROID_PLATFORM ||'7.1',
+					enableVNC: true,
+					platformName: 'Android',
+					deviceName: process.env.DEVICE_NAME || 'emulator-5554',
+					recreateChromeDriverSessions: true,
 					clearSystemFiles:true,
 			},
 			selenium: {
@@ -66,7 +69,7 @@ const settings: NightWatchOptions = {
 					clearSystemFiles:true,
 					fullReset: true
 			}
-		},,
+		},
 	},
 	test_workers: {
 		enabled: false,
