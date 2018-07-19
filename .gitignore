@@ -26,7 +26,6 @@ build/test
 test/nightwatch/build
 test/nightwatch/src/developer/developer.test.ts
 test/nightwatch/.vscode
-test/nightwatch/src/config/developer.ts
 test/nightwatch/node_modules
 test/nightwatch/yarn-error.log
 test/nightwatch/.env

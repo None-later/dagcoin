@@ -49,7 +49,24 @@ const settings: NightWatchOptions = {
 			end_session_on_fail: true,
 			skip_testcases_on_fail: true,
 		},
-
+		appiumapp:{
+			desiredCapabilities: {
+					app: process.env.APP_APK,
+					platformVersion: '7.1',
+					platformName: process.env.ANDROID_PLATFORM,
+					deviceName: process.env.DEVICE_NAME,
+					clearSystemFiles:true,
+			},
+			selenium: {
+					start_process: false
+			},
+			appium: {
+				  autoWebview: true,
+					start_process: true,
+					clearSystemFiles:true,
+					fullReset: true
+			}
+		},,
 	},
 	test_workers: {
 		enabled: false,
