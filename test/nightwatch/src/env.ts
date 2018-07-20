@@ -6,6 +6,6 @@ module.exports = {
 	waitForConditionTimeout: 25000,
 
 	// Timeout for Node.js assertion library
-	retryAssertionTimeout: 500,
+	retryAssertionTimeout: 5000,
 
 };

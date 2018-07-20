@@ -10,12 +10,12 @@ const globalPage: PageObject = {
 				client.waitForElementVisible(swiper, 7500);
 			},
 			fillCheckBox: (client: NightWatchClient, ngModel: string): void => {
-				const input: string = '//input[@type="checkbox" and @ng-model="' + ngModel + '"]';
-				client.useXpath();
-				client.waitForElementVisible(input).click(input);
+				const input: string = `//input[@type="checkbox" and @ng-model="${ngModel}"]`;
+				const label: string = `${input}/parent::*/label`;
+				client.waitForElementVisible(label).click(label);
 			},
-			buttonClick: (client: NightWatchClient, text: string): void => {
-				const button: string = '//button/span[contains(string(),"' + text + '")]';
+			clickOnButton: (client: NightWatchClient, name: string) => {
+				const button = `//button[contains (.,"${name}")]`;
 				client.waitForElementVisible(button).click(button);
 			},
 			clearInput: (client: NightWatchClient, id: string): void => {
