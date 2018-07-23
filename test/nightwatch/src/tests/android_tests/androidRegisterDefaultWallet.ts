@@ -4,26 +4,60 @@ import setup from '../../texts/initialSetup';
 // let recipientAddress: string;
 
 export const androidRegisterDeafultWallet = {
+
 	'Android Set up default wallet': (client: NightWatchClient): void => {
 		const global: NightWatchClient = client.page.globalPage();
-		
+		const icons = ['safe', 'transfer', 'business'];
+		const textFirstHalves = [
+			'This app stores your ', 
+			'Up to ', 
+			'We listen to our '
+		];
+		const textSecondHalves = [
+			'with cutting-edge state of the art security', 
+			'than most alternative solutions!', 
+			'to deliver the best product on the market!'
+		];
+		const buttons = ['GOT IT', 'AWESOME', 'CREATE WALLET'];
+
 		client.useXpath();
 		client.setContext('WEBVIEW_org.dagcoin.client');
 		client.contexts(context => {
 		    client.setContext(context.value[1]);
 		});	
-			
+
 		// Click through introduction slides
-		client.waitForElementVisible(
-			'//div[@icon="safe"]/svg-icon',
-		);
-		global.clickOnButton(client,'GOT IT');
-		global.clickOnButton(client,'AWESOME');
-		global.clickOnButton(client,'CREATE WALLET');
+		for (let i = 0; i < 3; i++) {
+			client.waitForElementVisible(`//div[@icon="${icons[i]}"]/svg-icon`);
+			client.expect
+				.element('//div[contains(@class,"swiper-slide-active")]')
+				.text.to.contain(textFirstHalves[i])
+				.before();
+			client.expect
+				.element('//div[contains(@class,"swiper-slide-active")]')
+				.text.to.contain(textSecondHalves[i])
+				.before();
+			global.clickOnButton(client,buttons[i]);
+		}
 
 		// Agree to terms
 		client.waitForElementVisible('//div[@class="intro_confirm_content_checkboxes"]');
+		client.expect
+			.element('//div[@class="intro_confirm_content_checkboxes"]')
+			.text.to.contain('Almost done!')
+			.before();
+
 		client.waitForElementVisible('//ul[contains(@class,"fadeInDown")]');
+		client.expect
+			.element('//ul[contains(@class,"fadeInDown")]')
+			.text.to.contain(setup.initialRun.securityCheckbox)
+			.before();
+
+		client.expect
+			.element('//ul[contains(@class,"fadeInDown")]')
+			.text.to.contain(setup.initialRun.backupCheckbox)
+			.before();
+
 		client.pause(2000);
 		global.fillCheckBox(client,'confirm.security');
 		client.expect.element('//input[@id="security"]').to.be.selected.before();
@@ -32,6 +66,12 @@ export const androidRegisterDeafultWallet = {
 		client.expect.element('//input[@id="backup"]').to.be.selected.before();
 
 		client.pause(2000);
+		client.expect
+			.element('//label[@for="finish"]')
+			.text.to.contain('I HAVE READ, UNDERSTOOD AND AGREE TO ')
+			.before();
+
+		client.expect.element('//label[@for="finish"]').text.to.contain('TERMS OF USE').before();
 		global.fillCheckBox(client,'confirm.finish');	
 		client.expect.element('//input[@id="finish"]').to.be.selected.before();
 
@@ -43,6 +83,14 @@ export const androidRegisterDeafultWallet = {
 		// Continue
 		client.expect.element('//span[text()="WELCOME TO DAGCOIN"]').to.be.visible.before();
 		global.clickOnButton(client,'CONTINUE');
+		client.expect
+			.element('//div[@ng-show="splash.bDeviceNameSet"]')
+			.text.to.contain(setup.initialRun.deviceNameSlide_1)
+			.before();
+		client.expect
+			.element('//div[@ng-show="splash.bDeviceNameSet"]')
+			.text.to.contain(setup.initialRun.deviceNameSlide_2)
+			.before();
 		global.clickOnButton(client,'GET STARTED');
 
 		// Small expenses wallet view
@@ -51,7 +99,7 @@ export const androidRegisterDeafultWallet = {
 		client.expect.element('//p[@class="heading"]').text.to.contain('Start sending Dagcoin').before();
 		client.expect.element('//p[@class="explanation"]').text.to.contain(setup.initialRun.getStarted).before();
 	},
-	'Close app': (client: NightWatchClient): void => {
+	'Android Close app': (client: NightWatchClient): void => {
 		client.end();
 	}
 };
