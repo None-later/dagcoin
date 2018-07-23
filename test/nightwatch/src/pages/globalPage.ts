@@ -14,6 +14,11 @@ const globalPage: PageObject = {
 				const label: string = `${input}/parent::*/label`;
 				client.waitForElementVisible(label).click(label);
 			},
+			fillRadioBox: (client: NightWatchClient, id: string): void => {
+				const input: string = `//input[@type="radio" and @id="${id}"]`;
+				const label: string = `${input}/parent::*`;
+				client.waitForElementVisible(label).click(label);
+			},
 			clickOnButton: (client: NightWatchClient, name: string) => {
 				const button = `//button[contains (.,"${name}")]`;
 				client.waitForElementVisible(button).click(button);
