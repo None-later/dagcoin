@@ -9,6 +9,10 @@ const globalPage: PageObject = {
 				client.pause(4000);
 				client.waitForElementVisible(swiper, 7500);
 			},
+			openSideBarMenu: (client: NightWatchClient): void => {
+				const sideBarIcon: string = '//span[@title="Preferences"]';
+				client.waitForElementVisible(sideBarIcon).click(sideBarIcon);
+			},
 			fillCheckBox: (client: NightWatchClient, ngModel: string): void => {
 				const input: string = `//input[@type="checkbox" and @ng-model="${ngModel}"]`;
 				const label: string = `${input}/parent::*/label`;
