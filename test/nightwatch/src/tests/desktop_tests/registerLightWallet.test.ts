@@ -68,6 +68,11 @@ export const registerLightWallet = {
 		client.waitForElementVisible('//div[@id="walletHome"]');
 		client.expect.element('//p[@class="heading"]').text.to.contain('Start sending Dagcoin').before();
 		client.expect.element('//p[@class="explanation"]').text.to.contain(setup.initialRun.getStarted).before();
+
+		// Check that wallet type is light in sidebar menu
+        global.openSideBarMenu(client);
+        client.expect.element('//nav[contains(@class,"sidebar")]').to.be.visible.before();
+        client.expect.element('//nav/header').text.to.contain('light wallet').before();
 	},
 	'Close app': (client: NightWatchClient): void => {
 		client.end();
