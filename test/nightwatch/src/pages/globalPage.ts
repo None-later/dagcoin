@@ -13,6 +13,10 @@ const globalPage: PageObject = {
 				const sideBarIcon: string = '//span[@title="Preferences"]';
 				client.waitForElementVisible(sideBarIcon).click(sideBarIcon);
 			},
+			goBack: (client: NightWatchClient): void => {
+				const backButton: string = '//svg-icon[contains(@class,"back-button")]/parent::*';
+				client.waitForElementVisible(backButton).click(backButton);
+			},
 			fillCheckBox: (client: NightWatchClient, ngModel: string): void => {
 				const input: string = `//input[@type="checkbox" and @ng-model="${ngModel}"]`;
 				const label: string = `${input}/parent::*/label`;
