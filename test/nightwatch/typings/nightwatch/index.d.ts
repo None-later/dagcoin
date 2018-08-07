@@ -128,6 +128,11 @@
 	export interface NightWatchTestWorker {
 		enabled: boolean;
 		workers: string;
+  }
+  
+  export interface RequestTimeoutOptions {
+		timeout: number;
+		retry_attempts: number;
 	}
 
 	export interface NightWatchOptions {
@@ -241,6 +246,8 @@
     
     appium?: any;
 
+    request_timeout_options?: RequestTimeoutOptions;
+
 		launch_url?: string /**
      * The hostname/IP on which the selenium server is accepting connections.
      */;
@@ -253,6 +260,7 @@
 		silent?: boolean /**
      * Use to disable terminal output completely.
      */;
+    
 		output?: boolean /**
      * Use to disable colored output in the terminal.
      */;

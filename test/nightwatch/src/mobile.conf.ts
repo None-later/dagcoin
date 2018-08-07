@@ -30,6 +30,10 @@ const settings: NightWatchOptions = {
 	},
 	test_settings: {
 		default: {
+			request_timeout_options: {
+				timeout: 500000,
+				retry_attempts: 5
+			},
 			selenium_host: process.env.SELENIUM_HOST || 'localhost',
 			selenium_port: process.env.SELENIUM_PORT || '4723',
 			username: process.env.GRID_USER || '',
