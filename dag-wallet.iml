@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/bower_components/qrcode-generator/java/src/java-test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bower_components/qrcode-generator/java/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-device-name/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-inappbrowser/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-file/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/build/generated/source/r/debug" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/phonegap-plugin-push/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-sqlite-plugin/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/phonegap-plugin-barcodescanner/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/CordovaLib/build/generated/source/buildConfig/debug" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-customurlscheme/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-x-toast/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/CordovaLib/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-sqlite-plugin/example/cordova-app/plugins/cordova-plugin-whitelist/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-whitelist/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-android-fingerprint-auth/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-file/tests/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-uniquedeviceid/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-statusbar/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-dialogs/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-network-information/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-splashscreen/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-x-socialsharing/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/build/generated/source/buildConfig/debug" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/plugins/cordova-plugin-spinner-dialog/src/android" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cordova/project-ANDROID/platforms/android/CordovaLib/build/generated/source/r/debug" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
