@@ -56,6 +56,7 @@ const settings: NightWatchOptions = {
 		appiumapp:{
 			desiredCapabilities: {
 					browserName: 'android',
+					browserVersion: process.env.ANDROID_PLATFORM ||'7.1',
 					app: process.env.APP_APK ||'http://973271c2.ngrok.io/android-debug.apk',
 					platformVersion: process.env.ANDROID_PLATFORM ||'7.1',
 					enableVNC: true,
