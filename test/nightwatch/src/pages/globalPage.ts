@@ -9,13 +9,26 @@ const globalPage: PageObject = {
 				client.pause(4000);
 				client.waitForElementVisible(swiper, 7500);
 			},
-			fillCheckBox: (client: NightWatchClient, ngModel: string): void => {
-				const input: string = '//input[@type="checkbox" and @ng-model="' + ngModel + '"]';
-				client.useXpath();
-				client.waitForElementVisible(input).click(input);
+			openSideBarMenu: (client: NightWatchClient): void => {
+				const sideBarIcon: string = '//span[@title="Preferences"]';
+				client.waitForElementVisible(sideBarIcon).click(sideBarIcon);
 			},
-			buttonClick: (client: NightWatchClient, text: string): void => {
-				const button: string = '//button/span[contains(string(),"' + text + '")]';
+			goBack: (client: NightWatchClient): void => {
+				const backButton: string = '//svg-icon[contains(@class,"back-button")]/parent::*';
+				client.waitForElementVisible(backButton).click(backButton);
+			},
+			fillCheckBox: (client: NightWatchClient, ngModel: string): void => {
+				const input: string = `//input[@type="checkbox" and @ng-model="${ngModel}"]`;
+				const label: string = `${input}/parent::*/label`;
+				client.waitForElementVisible(label).click(label);
+			},
+			fillRadioBox: (client: NightWatchClient, id: string): void => {
+				const input: string = `//input[@type="radio" and @id="${id}"]`;
+				const label: string = `${input}/parent::*`;
+				client.waitForElementVisible(label).click(label);
+			},
+			clickOnButton: (client: NightWatchClient, name: string) => {
+				const button = `//button[contains (.,"${name}")]`;
 				client.waitForElementVisible(button).click(button);
 			},
 			clearInput: (client: NightWatchClient, id: string): void => {
