@@ -17,7 +17,7 @@ echo -e "${Green}* Preparing folders for Debian Linux distributions...${CloseCol
 if [ "$1" == "testnet" ]; then
   Type="-tn"
   ExecPost="-TN"
-  ZipFilePath='../byteballbuilds/dagcoin-TN-wallet-linux64.zip'
+  ZipFilePath='../byteballbuilds/DagWallet-tn-linux64.zip'
   Action=linux64:testnet
 else
   Type=""

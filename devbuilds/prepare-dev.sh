@@ -3,10 +3,14 @@ Green='\033[0;32m'
 Red='\033[0;31m'
 CloseColor='\033[0m'
 
-NodeVersion="v5.12.0"
+NodeVersion="v8.11.3"
 environment=$1
 
-echo "${Green}* Node version OK${CloseColor}"
+echo "${Green}* Checking Node version...${CloseColor}"
+if ! node -v | grep -q ${NodeVersion}; then
+ echo "${Red}* ERROR. Please use Node v8.11.3...${CloseColor}"
+ exit
+fi
 if ! type bower > /dev/null; then
   echo "${Red}* ERROR. Please install bower${CloseColor}"
   echo "${Red}* npm install -g bower${CloseColor}"
@@ -37,13 +41,13 @@ if [ "$(uname)" == "Darwin" ]; then
     exit
   fi
   mkdir "${Sqlite3Path}/node-webkit-v0.14.7-darwin-x64"
-  cp "${Sqlite3Path}/node-v47-darwin-x64/node_sqlite3.node" "${Sqlite3Path}/node-webkit-v0.14.7-darwin-x64"
+  cp "${Sqlite3Path}/node-v57-darwin-x64/node_sqlite3.node" "${Sqlite3Path}/node-webkit-v0.14.7-darwin-x64"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if [ -d "${Sqlite3Path}/node-webkit-v0.14.7-linux-x64" ]; then
     grunt build:${environment}
     exit
   fi
   mkdir "${Sqlite3Path}/node-webkit-v0.14.7-linux-x64"
-  cp "${Sqlite3Path}/node-v47-linux-x64/node_sqlite3.node" "${Sqlite3Path}/node-webkit-v0.14.7-linux-x64"
+  cp "${Sqlite3Path}/node-v57-linux-x64/node_sqlite3.node" "${Sqlite3Path}/node-webkit-v0.14.7-linux-x64"
 fi
 grunt build:${environment}

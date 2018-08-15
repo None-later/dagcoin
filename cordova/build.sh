@@ -83,7 +83,7 @@ if [ ! -d $PROJECT ]; then
 	if [ $CURRENT_OS == "ANDROID" ]; then
 		echo -e "${OpenColor}${Green}* Adding Android platform... ${CloseColor}"
     cordova platform rm android
-    cordova platform add android
+    cordova platform add android@6
 		checkOK
 	fi
 
@@ -173,9 +173,6 @@ if [ ! -d $PROJECT ]; then
 	  cordova plugin add phonegap-plugin-push@2.1.3
 	  checkOK
 	fi
-
-	cordova plugin add cordova-universal-links-plugin
-	checkOK
 
 fi
 

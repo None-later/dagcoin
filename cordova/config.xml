@@ -76,10 +76,4 @@
     <splash src="../ios/splash/Default-736h@3x~iphone6plus.png" width="1242" height="2208"/>
   </platform>
 
-  <universal-links>
-    <host name="@UNIVERSAL_LINK_HOST" scheme="https">
-      <path url="/paymentRequest" event="paymentRequest"/>
-    </host>
-  </universal-links>
-
 </widget>
