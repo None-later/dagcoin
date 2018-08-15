@@ -6,6 +6,8 @@ CloseColor='\033[0m'
 NodeVersion="v8.11.3"
 environment=$1
 
+NWVersion=0.24.3
+
 echo "${Green}* Checking Node version...${CloseColor}"
 if ! node -v | grep -q ${NodeVersion}; then
  echo "${Red}* ERROR. Please use Node v8.11.3...${CloseColor}"
@@ -24,6 +26,18 @@ fi
 
 echo "${Green}* Installing bower dependencies...${CloseColor}"
 bower install
+
+echo "${Green}* Setting NW.js recompile...${CloseColor}"
+# Setup target NW.js version
+export npm_config_target=${NWVersion}
+# Setup build architecture, ia32 or x64
+export npm_config_arch=x64
+export npm_config_target_arch=x64
+# Setup env for modules built with node-pre-gyp
+export npm_config_runtime=node-webkit
+export npm_config_build_from_source=true
+# Setup nw-gyp as node-gyp
+export npm_config_node_gyp=$(which nw-gyp)
 
 echo "${Green}* Installing npm dependencies...${CloseColor}"
 npm install

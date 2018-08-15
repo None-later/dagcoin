@@ -2,6 +2,8 @@ VERSION=`cut -d '"' -f2 $BUILDDIR/../version.js`
 GREEN=\033[0;32m
 CLOSECOLOR=\033[0m
 
+ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
@@ -74,3 +76,21 @@ android-debug-fast-tn:
 android-debug-fast-emulator-tn:
 	cordova/build.sh ANDROID dagcoin-wallet-tn --dbgjs testnet
 	cd ../byteballbuilds/project-ANDROID && cordova emulate android
+
+docker-image-ubuntu:
+	docker build -t pillow/ubuntutools -f devbuilds/ubuntu.dockerfile devbuilds/
+
+docker-image-android:
+	docker build -t pillow/androidtools -f devbuilds/android.dockerfile devbuilds/
+
+ubuntu-bash:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools
+
+ubuntu-prepare-dev:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/usr/bin/make -v ~/.ssh:/root/.ssh pillow/ubuntutools prepare-dev
+
+ubuntu-prepare-dev-tn:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/usr/bin/make -v ~/.ssh:/root/.ssh pillow/ubuntutools prepare-dev-tn
+
+ubuntu-grunt:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools -c "grunt"

@@ -1,0 +1,23 @@
+--- /root/.nw-gyp/0.24.3/common.gypi	2017-08-16 05:18:43.000000000 +0000
++++ common.gypi	2018-08-15 12:34:49.000000000 +0000
+@@ -52,9 +52,6 @@
+       ['OS=="linux" and target_arch=="ia32"', {
+         'sysroot': '<!(cd <(DEPTH) && pwd -P)/build/linux/debian_jessie_i386-sysroot',
+       }],
+-      ['OS=="linux" and target_arch=="x64"', {
+-        'sysroot': '<!(cd <(DEPTH) && pwd -P)/build/linux/debian_jessie_amd64-sysroot',
+-      }],
+       ['OS== "mac"', {
+         'OBJ_DIR': '<(PRODUCT_DIR)/obj.target',
+         #'V8_BASE': '<(PRODUCT_DIR)/libv8_base.a',
+@@ -401,8 +398,8 @@
+             'ldflags': [ '-mx32' ],
+           }],
+           [ 'target_arch=="x64"', {
+-            'cflags': [ '-m64', '--sysroot=<(sysroot)' ],
+-            'ldflags': [ '-m64', '--sysroot=<(sysroot)','<!(<(DEPTH)/content/nw/tools/sysroot_ld_path.sh <(sysroot))' ],
++            'cflags': [ '-m64' ],
++            'ldflags': [ '-m64' ],
+           }],
+           [ 'target_arch=="ppc" and OS!="aix"', {
+             'cflags': [ '-m32' ],

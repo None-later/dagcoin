@@ -57,6 +57,28 @@ Then run Dagcoin desktop client:
 /path/to/your/nwjs/nwjs .
 ```
 
+### Build using docker:
+
+This method can be used to quickly build the working directory using pre-made docker environments. It operates
+
+Deps for running (out of docker) without generating package:
+```sh
+npm install -g nwjs
+nw install 0.24.3-sdk
+```
+
+Build everything with docker buildenv:
+```sh
+make clean #node_modules has to be deleted in order to trigger the node-gyp rebuild
+make docker-image-ubuntu #only required if ubuntu.dockerfile has been modified compared to published one
+make prepare-dev-tn
+```
+
+Run with local NWJS (docker can't run GUI):
+```sh
+~/.nwjs/0.24.3-sdk/nw .
+```
+
 ## Build Dagcoin App Bundles
 
 ### Android
