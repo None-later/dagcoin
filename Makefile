@@ -83,14 +83,8 @@ docker-image-ubuntu:
 docker-image-android:
 	docker build -t pillow/androidtools -f devbuilds/android.dockerfile devbuilds/
 
-ubuntu-bash:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools
+ubuntu-%:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools -c make $(subst ubuntu-,,$@)
 
-ubuntu-prepare-dev:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/usr/bin/make -v ~/.ssh:/root/.ssh pillow/ubuntutools prepare-dev
-
-ubuntu-prepare-dev-tn:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/usr/bin/make -v ~/.ssh:/root/.ssh pillow/ubuntutools prepare-dev-tn
-
-ubuntu-grunt:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools -c "grunt"
+docker-%:
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/androidtools -c make $(subst docker-,,$@)
