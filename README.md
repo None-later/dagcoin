@@ -59,7 +59,7 @@ Then run Dagcoin desktop client:
 
 ### Build using docker:
 
-This method can be used to quickly build the working directory using pre-made docker environments. It operates
+This method can be used to quickly build the working directory using pre-made docker environments. It operates on your local working copy but builds inside the docker machine which has all the deps. Technically don't need bower, grunt etc installed anymore, make and docker are all that's needed.
 
 Deps for running (out of docker) without generating package:
 ```sh
@@ -71,7 +71,7 @@ Build everything with docker buildenv:
 ```sh
 make clean #node_modules has to be deleted in order to trigger the node-gyp rebuild
 make docker-image-ubuntu #only required if ubuntu.dockerfile has been modified compared to published one
-make prepare-dev-tn
+make ubuntu-prepare-dev-tn
 ```
 
 Run with local NWJS (docker can't run GUI):
