@@ -69,7 +69,7 @@ nw install 0.24.3-sdk
 
 Build everything with docker buildenv:
 ```sh
-make clean #node_modules has to be deleted in order to trigger the node-gyp rebuild
+rm -rf node_modules #node_modules has to be deleted in order to trigger the node-gyp rebuild
 make docker-image-ubuntu #only required if ubuntu.dockerfile has been modified compared to published one
 make ubuntu-prepare-dev-tn
 ```

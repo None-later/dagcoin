@@ -6,6 +6,8 @@ src/js/translations.js
 test/nightwatch/build/
 test/nightwatch/.env
 
+byteballbuilds
+
 # version
 src/js/version.js
 

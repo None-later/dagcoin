@@ -5,6 +5,7 @@ Red='\033[0;31m'
 CloseColor='\033[0m'
 
 NodeVersion="v8.11.3"
+NWVersion=0.24.3
 
 echo "${Green}* Checking Node version...${CloseColor}"
 if ! node -v | grep -q ${NodeVersion}; then
@@ -44,6 +45,18 @@ if [ -d "./node_modules" ]; then
   echo "Moving existing node_modules to temp ..."
   mv "./node_modules" "./node_modules-temp"
 fi
+
+echo "${Green}* Setting NW.js recompile...${CloseColor}"
+# Setup target NW.js version
+export npm_config_target=${NWVersion}
+# Setup build architecture, ia32 or x64
+export npm_config_arch=x64
+export npm_config_target_arch=x64
+# Setup env for modules built with node-pre-gyp
+export npm_config_runtime=node-webkit
+export npm_config_build_from_source=true
+# Setup nw-gyp as node-gyp
+export npm_config_node_gyp=$(which nw-gyp)
 
 echo "Installing production dependencies..."
 

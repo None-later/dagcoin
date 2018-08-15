@@ -13,7 +13,12 @@ RUN apt-get install -y nodejs \
 RUN npm install -g grunt-cli bower cordova phonegap nw-gyp \
 && echo '{ "allow_root": true }' > /root/.bowerrc
 
+RUN gem install sass --no-user-install
+
+RUN apt-get install -y devscripts debhelper dh-virtualenv
+
 COPY linux.patch linux.patch
+
 RUN mkdir -p ~/.nw-gyp/0.24.3 \
 && wget http://node-webkit.s3.amazonaws.com/v0.24.3/nw-headers-v0.24.3.tar.gz \
 && tar -xzvf ./nw-headers-v0.24.3.tar.gz -C ~/.nw-gyp/0.24.3 --strip-components=1 && \

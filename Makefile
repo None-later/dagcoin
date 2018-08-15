@@ -84,7 +84,7 @@ docker-image-android:
 	docker build -t pillow/androidtools -f devbuilds/android.dockerfile devbuilds/
 
 ubuntu-%:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools -c make $(subst ubuntu-,,$@)
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --volume=$(ROOT_DIR)/byteballbuilds:/root/byteballbuilds --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/ubuntutools -c "make $(subst ubuntu-,,$@)"
 
 docker-%:
-	docker run -it --volume=$(ROOT_DIR):/root/wallet --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/androidtools -c make $(subst docker-,,$@)
+	docker run -it --volume=$(ROOT_DIR):/root/wallet --volume=$(ROOT_DIR)/byteballbuilds:/root/byteballbuilds --workdir="/root/wallet" --memory=8g --memory-swap=8g --memory-swappiness=0 --entrypoint=/bin/bash -v ~/.ssh:/root/.ssh -e CI=true pillow/androidtools -c "make $(subst docker-,,$@)"
