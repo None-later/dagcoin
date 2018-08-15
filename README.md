@@ -61,7 +61,9 @@ Then run Dagcoin desktop client:
 
 This method can be used to quickly build the working directory using pre-made docker environments. It operates on your local working copy but builds inside the docker machine which has all the deps. Technically don't need bower, grunt etc installed anymore, make and docker are all that's needed.
 
-Deps for running (out of docker) without generating package:
+
+__For running the linux build on host machine while building in docker__
+Deps:
 ```sh
 npm install -g nwjs
 nw install 0.24.3-sdk
@@ -78,6 +80,28 @@ Run with local NWJS (docker can't run GUI):
 ```sh
 ~/.nwjs/0.24.3-sdk/nw .
 ```
+
+__For building the linux deb-s__
+
+```sh
+rm -rf node_modules #node_modules has to be deleted in order to trigger the node-gyp rebuild
+make docker-image-ubuntu #only required if ubuntu.dockerfile has been modified compared to published one
+make ubuntu-prepare-dev-tn
+make ubuntu-prepare-package-tn
+make ubuntu-prepare-package-deb-tn
+```
+
+
+__For building the apk-s__
+
+```sh
+make docker-image-android #only required if android.dockerfile has been modified compared to published one
+make docker-prepare-dev-tn
+make docker-android-package-tn
+```
+
+.apk should be located in cordova/project-ANDROID/platforms/android/build/outputs/apk/debug/android-debug.apk /data/android-debug.apk
+
 
 ## Build Dagcoin App Bundles
 

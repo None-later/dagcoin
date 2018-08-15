@@ -10,12 +10,13 @@ RUN apt-get install -y nodejs \
 && npm install -g npm@latest
 
 # Install npm dependencies
-RUN npm install -g grunt-cli bower cordova phonegap nw-gyp \
+RUN npm install -g grunt-cli bower cordova phonegap \
 && echo '{ "allow_root": true }' > /root/.bowerrc
 
 RUN gem install sass --no-user-install
 
-RUN apt-get install -y devscripts debhelper dh-virtualenv
+RUN apt-get install -y devscripts debhelper dh-virtualenv \
+&& npm install -g nw-gyp
 
 COPY linux.patch linux.patch
 
