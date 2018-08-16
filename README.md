@@ -91,6 +91,7 @@ make ubuntu-prepare-package-tn
 make ubuntu-prepare-package-deb-tn
 ```
 
+.deb should be located in byteballbuilds/dagcoin-wallet-tn_${version}t_all.deb
 
 __For building the apk-s__
 
