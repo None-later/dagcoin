@@ -65,8 +65,8 @@ const globalPage: PageObject = {
 			insertAmount: (client: NightWatchClient, value: string): void => {
 				const amountInput: string = '//input[@placeholder="Amount"]';
 				client.waitForElementVisible(amountInput).setValue(amountInput, value);
-			},	
-			
+			},
+
 			getWalletCode: (client: NightWatchClient, location: string): void => {
 				client.getText(location, result => {
 					client.waitForElementVisible(`${location}[text()="${result.value}"]`);
@@ -76,8 +76,7 @@ const globalPage: PageObject = {
 			selectBackOnNavBar: (client: NightWatchClient): void => {
 				const back = '//div/a[@class="navbar-back-icon"]';
 
-					client.waitForElementVisible(back).click(back);
-
+				client.waitForElementVisible(back).click(back);
 			},
 
 			closeQrScanner: (client: NightWatchClient): void => {
