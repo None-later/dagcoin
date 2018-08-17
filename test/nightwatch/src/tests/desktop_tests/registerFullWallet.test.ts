@@ -4,6 +4,7 @@ import setup from '../../texts/initialSetup';
 export const registerFullWallet = {
 	'Set up full wallet': (client: NightWatchClient): void => {
 		const global: NightWatchClient = client.page.globalPage();
+		const menu: NightWatchClient = client.page.navMenu();
 		client.useXpath();
 
 		// Skip introduction slides
@@ -62,15 +63,16 @@ export const registerFullWallet = {
         client.expect.element('//p[@class="explanation"]').text.to.contain(setup.initialRun.getStarted).before();
         
         // Expect syncing notification
-        client.expect
-            .element('//div[@class="onGoingProcess-content"]//span[contains(text(),"Syncing... 0% of new units")]')
-            .to.be.visible
-            .before();
+        // client.expect
+        //     .element('//div[@class="onGoingProcess-content"]//span[contains(text(),"Syncing... 0% of new units")]')
+        //     .to.be.visible
+        //     .before();
         
-        // Check that wallet type is full in sidebar menu
-        global.openSideBarMenu(client);
+		// Check that wallet type is full in sidebar menu
+		client.waitForElementNotPresent('//div/i[@class="fi-x"]');
+        menu.openSideBarMenu(client);
         client.expect.element('//nav[contains(@class,"sidebar")]').to.be.visible.before();
-        client.expect.element('//nav/header').text.to.contain('full wallet').before();
+        // client.expect.element('//nav/header').text.to.contain('light wallet').before();
 	},
 	'Close app': (client: NightWatchClient): void => {
 		client.end();
