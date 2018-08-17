@@ -1,4 +1,4 @@
-import {CallbackResult, NightWatchClient, PageObject} from 'nightwatch';
+import {NightWatchClient, PageObject} from 'nightwatch';
 
 const globalPage: PageObject = {
 	commands: [
@@ -8,10 +8,6 @@ const globalPage: PageObject = {
 
 				client.pause(4000);
 				client.waitForElementVisible(swiper, 7500);
-			},
-			openSideBarMenu: (client: NightWatchClient): void => {
-				const sideBarIcon: string = '//span[@title="Preferences"]';
-				client.waitForElementVisible(sideBarIcon).click(sideBarIcon);
 			},
 			goBack: (client: NightWatchClient): void => {
 				const backButton: string = '//svg-icon[contains(@class,"back-button")]/parent::*';
@@ -46,26 +42,8 @@ const globalPage: PageObject = {
 					.clearValue(input)
 					.setValue(input, value);
 			},
-			selectBottomMenuItem: (client: NightWatchClient, item: string): void => {
-				let menuItem: string = '//span[@class="ng-binding"][contains(text(),"' + item + '")]';
-				client.isVisible('//span[@class="ng-binding"][contains(text(),"' + item + '")]', (result: CallbackResult) => {
-					if (result.value) {
-						client.waitForElementVisible(menuItem).click(menuItem);
-					} else {
-						client.elements(
-							'xpath',
-							'//span[@class="ng-binding"][contains(text(),"' + item + '")]',
-							(elementResult: CallbackResult) => {
-								menuItem =
-									'(//span[@class="ng-binding"][contains(text(),"' + item + '")])[' + elementResult.value.length + ']';
-								client.waitForElementVisible(menuItem).click(menuItem);
-							},
-						);
-					}
-				});
-			},
 			selectDevice: (client: NightWatchClient, itemText: string, timeout?: number): void => {
-				const listItem: string = '//li/div[contains(string(), " ' + itemText + '")]';
+				const listItem: string = '//li/div[contains(string(), "' + itemText + '")]';
 				client.waitForElementVisible(listItem, timeout).click(listItem);
 			},
 			insertAddress: (client: NightWatchClient): void => {
@@ -87,6 +65,24 @@ const globalPage: PageObject = {
 			insertAmount: (client: NightWatchClient, value: string): void => {
 				const amountInput: string = '//input[@placeholder="Amount"]';
 				client.waitForElementVisible(amountInput).setValue(amountInput, value);
+			},
+
+			getWalletCode: (client: NightWatchClient, location: string): void => {
+				client.getText(location, result => {
+					client.waitForElementVisible(`${location}[text()="${result.value}"]`);
+				});
+			},
+
+			selectBackOnNavBar: (client: NightWatchClient): void => {
+				const back = '//div/a[@class="navbar-back-icon"]';
+
+				client.waitForElementVisible(back).click(back);
+			},
+
+			closeQrScanner: (client: NightWatchClient): void => {
+				const close = '//div/a[@class="close_modal"]';
+
+				client.waitForElementVisible(close).click(close);
 			},
 		},
 	],

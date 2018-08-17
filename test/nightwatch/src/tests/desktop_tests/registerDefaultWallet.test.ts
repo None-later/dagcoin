@@ -5,6 +5,7 @@ export const registerDefaultWallet = {
 
 	'Set up default wallet': (client: NightWatchClient): void => {
 		const global: NightWatchClient = client.page.globalPage();
+		const menu: NightWatchClient = client.page.navMenu();
 		const icons = ['safe', 'transfer', 'business'];
 		const textFirstHalves = [
 			'This app stores your ', 
@@ -106,7 +107,8 @@ export const registerDefaultWallet = {
 		client.expect.element('//p[@class="explanation"]').text.to.contain(setup.initialRun.getStarted).before();
 
 		// Check that wallet type is full in sidebar menu
-        global.openSideBarMenu(client);
+		client.waitForElementNotPresent('//div/i[@class="fi-x"]');
+        menu.openSideBarMenu(client);
         client.expect.element('//nav[contains(@class,"sidebar")]').to.be.visible.before();
         client.expect.element('//nav/header').text.to.contain('light wallet').before();
 	},
