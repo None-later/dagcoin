@@ -57,9 +57,22 @@ const navMenu: PageObject = {
 			},
 
 			selectTab: (client: NightWatchClient, menu: string): void => {
-				const target = `//li/a[text()="${menu}"]`;
+				const target = '//li/a[text()="' + menu +'"]';
 
 				client.waitForElementVisible(target).click(target);
+			},
+
+			selectContact: (client: NightWatchClient, name: string): void => {
+				const target = '//div[@class="avatar"]/../a[text()="' + name + '"]';
+
+				client.waitForElementVisible(target).click(target);
+			},	
+			// func for editing or delete contact from address book
+			contactOptions: (client: NightWatchClient, option: string): void => {
+				const target = '//ul/li[text()="' + option  + '"]';
+
+				client.waitForElementVisible(target).click(target);
+				
 			},
 		},
 	],
