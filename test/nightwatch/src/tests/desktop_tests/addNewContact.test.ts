@@ -133,6 +133,7 @@ export const addNewContact = {
         client.click('//div/a[@ng-click="contact.editContact()"]');
 
         client.waitForElementVisible('//div[@class="ngdialog-content"]');
+        client.pause(500);
         menu.contactOptions(client, 'Delete');
         client.waitForElementVisible(`//div//span[text()="${texts.addressBook.info}"]`);
         

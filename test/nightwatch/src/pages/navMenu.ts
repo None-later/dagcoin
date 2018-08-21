@@ -69,7 +69,13 @@ const navMenu: PageObject = {
 			},
 			// func for editing or delete contact from address book
 			contactOptions: (client: NightWatchClient, option: string): void => {
-				const target = '//ul/li[text()="' + option + '"]';
+				const target = '//ul//li[text()="' + option + '"]';
+
+				client.waitForElementVisible(target).click(target);
+			},
+
+			selectSettingOption: (client: NightWatchClient, option: string): void => {
+				const target = '//li//span[text()="'+ option +'"]';
 
 				client.waitForElementVisible(target).click(target);
 			},
