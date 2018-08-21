@@ -26,7 +26,7 @@ const settings: NightWatchOptions = {
 		port: 4444,
 		cli_args: {
 				// CLI ARGS are required for local Selenium standalone while start_process: true
-				'webdriver.chrome.driver' : process.env.NW_CHROMEDRIVER,
+				'webdriver.chrome.driver' : './node_modules/nw/nwjs/chromedriver',
 		},	
 	},
 	test_settings: {

@@ -37,6 +37,7 @@
 		"dotenv": "^6.0.0",
 		"dotenv-extended": "^2.0.2",
 		"nightwatch": "^0.9.21",
+		"nw": "0.24.3-sdk",
 		"path": "^0.12.7",
 		"selenium-standalone": "^6.5.0",
 		"testarmada-nightwatch-extra": "^5.1.0"
