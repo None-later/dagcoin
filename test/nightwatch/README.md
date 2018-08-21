@@ -26,7 +26,7 @@ This project is powered by Nightwatch.js
 
 - Setup android studio and install Android Emulator NB! SDK_25 only! newer versions might have problems and are not tested yet
 # Remote executions
-
+- !! Remote execution is supported only for ANDROID application !!
 - To execute tests in remote environment you need selenium grid or similar selenium server
 - To use Testreel browser cluster You must specifiy access parameters in your environment variables + use ssl 
 
@@ -47,7 +47,5 @@ SELENIUM_PORT='{OPTIONAL: desired selenium port}' ! Should be defined for remote
 GRID_USER='USER' ! Remote grid user
 GRID_SECRET='SECRET' !Remote grid access_key 
 USE_SSL={OPTIONAL: if using 443 port and SSL then true, else false/undefined} ! If using testreel grid then true 
-
-
 ```   
   
