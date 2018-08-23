@@ -75,7 +75,7 @@ const navMenu: PageObject = {
 			},
 
 			selectSettingOption: (client: NightWatchClient, option: string): void => {
-				const target = '//li//span[text()="'+ option +'"]';
+				const target = '//li//span[text()="' + option + '"]';
 
 				client.waitForElementVisible(target).click(target);
 			},
