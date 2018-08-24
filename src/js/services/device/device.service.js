@@ -9,7 +9,9 @@
 
   function Device() {
     return {
-      cordova: !!navigator.userAgent.match(/Android/i),
+      cordova: document.URL.indexOf('http://') === -1
+        && document.URL.indexOf('https://') === -1
+        && (!!navigator.userAgent.match(/Android/i) || !!navigator.userAgent.match(/iPhone|iPad|iPod/i)),
       android: !!navigator.userAgent.match(/Android/i),
       blackBerry: !!navigator.userAgent.match(/BlackBerry/i),
       iOS: !!navigator.userAgent.match(/iPhone|iPad|iPod/i),
