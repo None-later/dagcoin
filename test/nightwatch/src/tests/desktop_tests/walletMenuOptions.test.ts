@@ -214,8 +214,8 @@ export const walletMenuOptions = {
        menu.openSideBarMenu(client);
        menu.selectSideMenuOption(client, 'Paired devices');  
        
-       client.waitForElementVisible('//div[text()="Faucet"]');
-       global.selectDevice(client, 'Faucet');
+       client.waitForElementVisible('//div[text()="New"]');
+       global.selectDevice(client, 'New');
 
        client.waitForElementVisible('//div/div[@class="chat-message ng-scope"]');
        client.waitForElementVisible('//form[@name="chatForm"]');
