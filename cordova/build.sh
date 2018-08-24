@@ -17,7 +17,7 @@ checkOK() {
 
 # Configs
 BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT="$BUILDDIR/project-$1"
+PROJECT="$BUILDDIR/../../dagcoinbuilds/project-$1"
 
 CURRENT_OS=$1
 UNIVERSAL_LINK_HOST=false
@@ -75,7 +75,7 @@ if [ ! -d $PROJECT ]; then
   mkdir $PROJECT
 	cd $BUILDDIR
 	echo -e "${OpenColor}${Green}* Creating project... ${CloseColor}"
-	cordova create project-$1 ${ANDROID_PACKAGE} Dagcoin
+	cordova create ../../dagcoinbuilds/project-$1 ${ANDROID_PACKAGE} Dagcoin
 	checkOK
 
 	cd $PROJECT
@@ -105,7 +105,7 @@ if [ ! -d $PROJECT ]; then
 #  checkOK
 
 	if [ $CURRENT_OS == "IOS" ]; then
-		cordova plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git
+		cordova plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git#v7.0.4
 	else
 		phonegap plugin add phonegap-plugin-barcodescanner
 		checkOK
@@ -127,7 +127,7 @@ if [ ! -d $PROJECT ]; then
 	cordova plugin add cordova-plugin-x-toast && cordova prepare
 	checkOK
 
-	phonegap local plugin add https://github.com/ibnclaudius/CordovaClipboard
+	cordova plugin add https://github.com/ihadeed/cordova-clipboard
 	checkOK
 
 	cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git && cordova prepare
