@@ -17,7 +17,7 @@ checkOK() {
 
 # Configs
 BUILDDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT="$BUILDDIR/../../dagcoinbuilds/project-$1"
+PROJECT="$BUILDDIR/../../byteballbuilds/project-$1"
 
 CURRENT_OS=$1
 UNIVERSAL_LINK_HOST=false
@@ -75,7 +75,7 @@ if [ ! -d $PROJECT ]; then
   mkdir $PROJECT
 	cd $BUILDDIR
 	echo -e "${OpenColor}${Green}* Creating project... ${CloseColor}"
-	cordova create ../../dagcoinbuilds/project-$1 ${ANDROID_PACKAGE} Dagcoin
+	cordova create ../../byteballbuilds/project-$1 ${ANDROID_PACKAGE} Dagcoin
 	checkOK
 
 	cd $PROJECT

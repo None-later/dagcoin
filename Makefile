@@ -37,37 +37,37 @@ prepare-package-deb-tn:
 
 ios-prod:
 	cordova/build.sh IOS dagcoin --clear live
-	cd ../dagcoinbuilds/project-IOS && cordova build ios
+	cd ../byteballbuilds/project-IOS && cordova build ios
 
 ios-debug:
 	cordova/build.sh IOS dagcoin --dbgjs testnet
-	cd ../dagcoinbuilds/project-IOS  && cordova build ios
-	open ../dagcoinbuilds/project-IOS/platforms/ios/Dagcoin.xcodeproj
+	cd ../byteballbuilds/project-IOS  && cordova build ios
+	open ../byteballbuilds/project-IOS/platforms/ios/Dagcoin.xcodeproj
 
 android-prod:
 	cordova/build.sh ANDROID dagcoin --clear live
-	cd ../dagcoinbuilds/project-ANDROID  && cordova build --release android
+	cd ../byteballbuilds/project-ANDROID  && cordova build --release android
 #   keytool -genkey -v -keystore <keystore_name>.keystore -alias <keystore alias> -keyalg RSA -keysize 2048 -validity 10000
-	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dagcoin.jks -tsa http://sha256timestamp.ws.symantec.com/sha256/timestamp -signedjar ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk  ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-unsigned.apk dagcoin
-	$(ANDROID_HOME)/build-tools/25.0.3/zipalign -v 4 ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed-aligned.apk
+	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dagcoin.jks -tsa http://sha256timestamp.ws.symantec.com/sha256/timestamp -signedjar ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk  ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-unsigned.apk dagcoin
+	$(ANDROID_HOME)/build-tools/25.0.3/zipalign -v 4 ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed-aligned.apk
 
 android-prod-tn:
 	cordova/build.sh ANDROID dagcoin --clear testnet
-	cd ../dagcoinbuilds/project-ANDROID  && cordova build --release android
-	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dagcoin.jks -tsa http://sha256timestamp.ws.symantec.com/sha256/timestamp -signedjar ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk  ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-unsigned.apk dagcoin
-	$(ANDROID_HOME)/build-tools/25.0.3/zipalign -v 4 ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk ../dagcoinbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed-aligned.apk
+	cd ../byteballbuilds/project-ANDROID  && cordova build --release android
+	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dagcoin.jks -tsa http://sha256timestamp.ws.symantec.com/sha256/timestamp -signedjar ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk  ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-unsigned.apk dagcoin
+	$(ANDROID_HOME)/build-tools/25.0.3/zipalign -v 4 ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed.apk ../byteballbuilds/project-ANDROID/platforms/android/build/outputs/apk/android-release-signed-aligned.apk
 
 android-debug-fast:
 	cordova/build.sh ANDROID dagcoin --clear live
 #	cp ./etc/beep.ogg ./cordova/project/plugins/phonegap-plugin-barcodescanner/src/android/LibraryProject/res/raw/beep.ogg
-	cd ../dagcoinbuilds/project-ANDROID && cordova run android --device
-#	cd ../dagcoinbuilds/project-ANDROID && cordova build android
+	cd ../byteballbuilds/project-ANDROID && cordova run android --device
+#	cd ../byteballbuilds/project-ANDROID && cordova build android
 
 android-debug-fast-tn:
 	cordova/build.sh ANDROID dagcoin --dbgjs testnet
 	cd ./cordova/project-ANDROID && cordova run android --device
-#	cd ../dagcoinbuilds/project-ANDROID && cordova build android
+#	cd ../byteballbuilds/project-ANDROID && cordova build android
 
 android-debug-fast-emulator-tn:
 	cordova/build.sh ANDROID dagcoin --dbgjs testnet
-	cd ../dagcoinbuilds/project-ANDROID && cordova emulate android
+	cd ../byteballbuilds/project-ANDROID && cordova emulate android

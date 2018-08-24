@@ -67,7 +67,7 @@
     "test": "./node_modules/.bin/grunt test-coveralls",
     "eslint": "./node_modules/eslint/bin/eslint.js --cache ./src",
     "stylelint": "./node_modules/.bin/stylelint ./src/css/*.scss",
-    "resgen-ios": "crgen -p ios -i ./cordova/resources/icon.png -s ./cordova/resources/splash.png -o ./cordova/ios"
+    "resgen-ios": "crgen -p ios -i ./cordova/resources/icon.png -s ./cordova/resources/splash.png -o ./cordova"
   },
   "devDependencies": {
     "adm-zip": "^0.4.7",
@@ -94,16 +94,16 @@
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-debian-package": "^0.1.11",
+    "grunt-env": "^0.4.4",
     "grunt-exec": "^1.0.0",
     "grunt-karma": "^1.0.0",
     "grunt-karma-coveralls": "^2.5.3",
+    "grunt-ng-constant": "^2.0.1",
     "grunt-nw-builder": "3.1.0",
     "grunt-postcss": "^0.8.0",
     "grunt-stylelint": "^0.8.0",
     "grunt-svgmin": "^4.0.0",
-    "grunt-env": "^0.4.4",
     "grunt-template": "^1.0.0",
-    "grunt-ng-constant": "^2.0.1",
     "jasmine-core": "^2.6.4",
     "jshint": "^2.9.4",
     "karma": "^1.7.0",
