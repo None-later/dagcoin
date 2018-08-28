@@ -42,4 +42,9 @@ export default {
 	settings: {
 		backUp: 'For security reasons we strongly recommend you to back your wallet seed up as soon as possible.',
 	},
+
+	changeWalletType: {
+		content:
+			"The wallet will contain the most current state of the entire Dagcoin database. This option is better for privacy but will take several gigabytes of storage and the initial sync will take several days. CPU load will be high during sync. After changing to full wallet your money won't be visible until database will synchronize your transactions.",
+	},
 };
