@@ -31,7 +31,7 @@ export default {
 	},
 
 	addressBook: {
-		info: "Search result is empty or you don't have any contacts in your address book.",
+		info: `Search result is empty or you don't have any contacts in your address book.`,
 		description: 'Press "+" in the right upper corner to add new contact.',
 	},
 
@@ -45,6 +45,6 @@ export default {
 
 	changeWalletType: {
 		content:
-			"The wallet will contain the most current state of the entire Dagcoin database. This option is better for privacy but will take several gigabytes of storage and the initial sync will take several days. CPU load will be high during sync. After changing to full wallet your money won't be visible until database will synchronize your transactions.",
+			`The wallet will contain the most current state of the entire Dagcoin database. This option is better for privacy but will take several gigabytes of storage and the initial sync will take several days. CPU load will be high during sync. After changing to full wallet your money won't be visible until database will synchronize your transactions.`,
 	},
 };
