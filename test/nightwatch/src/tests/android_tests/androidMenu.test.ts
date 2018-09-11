@@ -1,4 +1,5 @@
 import {NightWatchClient} from 'nightwatch';
+import setup from '../../texts/initialSetup';
 import texts from '../../texts/walletText';
 
 export const androidMenuTest = {
@@ -27,13 +28,11 @@ export const androidMenuTest = {
         };
 
         for (const terms of Object.keys(agreeTerms)){
-            client.pause(2000);
             global.fillCheckBox(client, agreeTerms[terms]);
             client.expect.element(`//input[@id="${terms}"]`).to.be.selected.before();
         };
   
         global.clickOnButton(client,'Confirm & Finish');
-        client.pause(1500);
 
         // Expect registration selection not to be displayed for android
 		client.expect.element('//span[text()="Please choose registration type"]').to.not.be.present.after(2000);
@@ -42,7 +41,7 @@ export const androidMenuTest = {
 		client.expect.element('//span[text()="WELCOME TO DAGCOIN"]').to.be.visible.before();
         global.clickOnButton(client,'CONTINUE');
 
-        client.pause(2000);
+        client.waitForElementVisible(`//div//span[text()="${setup.initialRun.deviceNameSlide_1}"]`)
         global.clickOnButton(client,'GET STARTED');
         client.waitForElementVisible('//div[@id="walletHome"]');
     },
