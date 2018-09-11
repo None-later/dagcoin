@@ -84,7 +84,7 @@ const navMenu: PageObject = {
 				const start = '//tbody/tr/td[2]/div';
 
 				client.waitForElementVisible(start).click(start);
-			}
+			},
 		},
 	],
 
