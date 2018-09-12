@@ -93,7 +93,7 @@ const globalPage: PageObject = {
 					.setValue(target, text);
 			},
 
-			selectAdditionalOption: (client: NightWatchClient, option: string ): void => {
+			selectAdditionalOption: (client: NightWatchClient, option: string): void => {
 				const target = '//div//a/span[contains(text(),"' + option + '")]';
 
 				client.waitForElementVisible(target).click(target);
