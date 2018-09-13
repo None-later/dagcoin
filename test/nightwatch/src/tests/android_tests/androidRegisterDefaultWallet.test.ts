@@ -1,9 +1,7 @@
 import {NightWatchClient} from 'nightwatch';
 import setup from '../../texts/initialSetup';
 
-// let recipientAddress: string;
-
-export const androidRegisterDeafultWallet = {
+export const androidRegisterDefaultWallet = {
 
 	'Android Set up default wallet': (client: NightWatchClient): void => {
 		const global: NightWatchClient = client.page.globalPage();

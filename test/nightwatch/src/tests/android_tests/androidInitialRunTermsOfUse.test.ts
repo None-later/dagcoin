@@ -18,7 +18,6 @@ export const androidInitialRunTermsOfUse = {
 		// Check first two points
 		client.waitForElementVisible('//div[@class="intro_confirm_content_checkboxes"]');
 		client.waitForElementVisible('//ul[contains(@class,"fadeInDown")]');
-		client.pause(2000);
 		global.fillCheckBox(client,'confirm.security');
 		client.expect.element('//input[@id="security"]').to.be.selected.before();
 
@@ -26,7 +25,6 @@ export const androidInitialRunTermsOfUse = {
 		client.expect.element('//input[@id="backup"]').to.be.selected.before();
 
         // Expect confirmation button to be disabled
-        client.pause(2000);
         client.expect.element('//button[text()="Confirm & Finish"]').to.not.be.enabled.before();
 
         // Uncheck one of the previously checked points
@@ -39,7 +37,6 @@ export const androidInitialRunTermsOfUse = {
         // Check required points
         global.fillCheckBox(client,'confirm.backup');
         client.expect.element('//input[@id="backup"]').to.be.selected.before();
-        client.pause(1000);
     },
     'Android Open Terms of Use': (client: NightWatchClient): void => {
         const global: NightWatchClient = client.page.globalPage();
@@ -59,7 +56,7 @@ export const androidInitialRunTermsOfUse = {
         // Go back
         global.goBack(client);
         client.waitForElementVisible('//div[@class="intro_confirm_content_checkboxes"]');
-        client.pause(1000);
+        
     },
     'Android Agree to terms of use, confirm': (client: NightWatchClient): void => {
         const global: NightWatchClient = client.page.globalPage();
