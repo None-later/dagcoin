@@ -79,6 +79,20 @@ const navMenu: PageObject = {
 
 				client.waitForElementVisible(target).click(target);
 			},
+
+			addToFavorite: (client: NightWatchClient): void => {
+				const start = '//tbody/tr/td[2]/div';
+
+				client.waitForElementVisible(start).click(start);
+			},
+
+			selectAvatar: (client: NightWatchClient): void => {
+				const target = '//div[@class="avatar-wallet ng-binding"]';
+
+				client
+					.waitForElementVisible(target)
+					.click(target);
+			}
 		},
 	],
 

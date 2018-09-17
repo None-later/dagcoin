@@ -84,7 +84,6 @@ const globalPage: PageObject = {
 
 				client.waitForElementVisible(close).click(close);
 			},
-
 			fillTextarea: (client: NightWatchClient, location: string, text: string): void => {
 				const target = '//form/textarea[@id="' + location + '"]';
 
@@ -94,10 +93,18 @@ const globalPage: PageObject = {
 					.setValue(target, text);
 			},
 
-			selectAdditionalOption: (client: NightWatchClient, option: string ): void => {
+			selectAdditionalOption: (client: NightWatchClient, option: string): void => {
 				const target = '//div//a/span[contains(text(),"' + option + '")]';
 
 				client.waitForElementVisible(target).click(target);
+			},
+
+			clickOnSpanButton: (client: NightWatchClient, text: string): void => {
+				const target = '//button//span[text()="' + text + '"]';
+
+				client
+					.waitForElementVisible(target)
+					.click(target);
 			},
 		},
 	],
