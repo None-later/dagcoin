@@ -89,10 +89,8 @@ const navMenu: PageObject = {
 			selectAvatar: (client: NightWatchClient): void => {
 				const target = '//div[@class="avatar-wallet ng-binding"]';
 
-				client
-					.waitForElementVisible(target)
-					.click(target);
-			}
+				client.waitForElementVisible(target).click(target);
+			},
 		},
 	],
 

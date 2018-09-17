@@ -102,9 +102,7 @@ const globalPage: PageObject = {
 			clickOnSpanButton: (client: NightWatchClient, text: string): void => {
 				const target = '//button//span[text()="' + text + '"]';
 
-				client
-					.waitForElementVisible(target)
-					.click(target);
+				client.waitForElementVisible(target).click(target);
 			},
 		},
 	],
