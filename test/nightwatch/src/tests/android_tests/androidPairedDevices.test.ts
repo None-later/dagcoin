@@ -45,41 +45,38 @@ import texts from '../../texts/walletText';
     'Android pair device': (client: NightWatchClient): void => {
         const global: NightWatchClient = client.page.globalPage();
         const menu: NightWatchClient = client.page.navMenu();
+        const pair: NightWatchClient = client.page.pairedDevices();
 
         // Select a paired device option from bottom menu
         menu.selectBottomMenuItem(client, 'Paired Devices');
         client.waitForElementVisible(`//p/span[text()="You don't have any paired devices yet."]`);
 
         // Select add new device
-       client.waitForElementVisible('//div//a[@title="Add a new device"]');
-       client.click('//div//a[@title="Add a new device"]');
+       pair.deviceSideMenu(client);
 
         client.waitForElementVisible('//div[text()="Add device"]');
         client.waitForElementVisible('//ul/li//span[text()="Invite the other device"]');
         client.waitForElementVisible('//ul/li//span[text()="Accept invitation from the other device"]');
 
         // Select invite
-        const addDeviceOptions = [
-            'Invite the other device',
-            'Accept invitation from the other device',
-        ];
+        const addDeviceOptions: {[key: string]: string} = {
+           invite: 'Invite the other device',
+           accept: 'Accept invitation from the other device',
+        };
 
-        addDeviceOptions.forEach(option => {
-            client.waitForElementVisible(`//li/a//span[text()="${option}"]`);
-            client.click(`//li/a//span[text()="${option}"]`);
+        for (const option of Object.keys(addDeviceOptions)){
+            client.waitForElementVisible(`//li//span[text()="${addDeviceOptions[option]}"]`);
+            pair.addDevice(client, option);    
             
-            client.waitForElementVisible('//div[@class="content ng-scope"]');
-            if (option === 'Invite the other device') {
-
+            if (option === 'invite') {
                 client.waitForElementVisible(`//div//span[text()="${texts.addDevice.acceptInvite}"]`);
                 menu.goBack(client);
 
             } else {
                 client.waitForElementVisible(`//form//span[text()="${texts.acceptInvitation.info}"]`);
                 client.waitForElementVisible('//div/input[@id="code"]');
-
             }
-        });
+        };
 
         // Enter pairing code and pair
         global.fillInput(client, 'code', 'A9tqqVQkNXIUYzXCrQw19MlblDsQKbO5/+GuLSeTCrXF@hub.dagcoin.link#sau2JBjQcpKg');
@@ -101,15 +98,14 @@ import texts from '../../texts/walletText';
 
         // Type a message and send
         global.fillTextarea(client, 'message', 'Hello');
-        client.waitForElementVisible('//button[@ng-click="send()"]');
-
-        client.click('//button[@ng-click="send()"]');
+        pair.sendMessage(client);
         client.expect.element('//div[@class="bubble from-me"]/span').text.to.contain('Hello').before();
 
     },
 
     'Select edit and clear chat his. and rename paired dev.': (client: NightWatchClient): void => {
         const global: NightWatchClient = client.page.globalPage();
+        const pair: NightWatchClient = client.page.pairedDevices();
 
         global.selectAdditionalOption(client, 'Edit');
         client.waitForElementVisible('//form[@name="editForm"]');
@@ -129,8 +125,7 @@ import texts from '../../texts/walletText';
         client.waitForElementVisible('//div//input[@id="hub"]');  
             
         // Clear chat history
-        client.waitForElementVisible('//form/div[4]/button[2]');
-        client.click('//form/div[4]/button[2]');
+        global.clickOnSpanButton(client, 'Clear chat history');
 
         client.waitForElementVisible('//div/h3[text()="Clear chat history"]');
         client.waitForElementVisible('//div//p[text()="Delete the whole chat history with New ?"]');
@@ -138,7 +133,7 @@ import texts from '../../texts/walletText';
         client.waitForElementVisible('//button//span[text()="Yes"]');
         client.waitForElementVisible('//button//span[text()="Cancel"]');
         
-        client.click('//button//span[text()="Yes"]');  
+        global.clickOnSpanButton(client, 'Yes'); 
         client.waitForElementNotPresent('//div[@class="bubble from-me"]/span[text()="Hello"]')
 
         // Rename devices
@@ -152,11 +147,8 @@ import texts from '../../texts/walletText';
         client.waitForElementVisible('//li//div[text()="testName"]');
 
         // Remove added device from list 
-        client.waitForElementVisible('//button//span[text()="Remove a device"]');
-        client.click('//button//span[text()="Remove a device"]');
-
-        client.waitForElementVisible('//div/ul/li/a[1]');
-        client.click('//div/ul/li/a[1]');
+        global.clickOnSpanButton(client, 'Remove a device');
+        pair.deletePairedWallet(client);
         client.waitForElementVisible(`//p/span[text()="You don't have any paired devices yet."]`)
     },    
     
