@@ -1,6 +1,5 @@
 import {NightWatchClient} from 'nightwatch';
 import setup from '../../texts/initialSetup';
-// import texts from '../../texts/walletText';
 
 export const androidSecurityTest = {
 
