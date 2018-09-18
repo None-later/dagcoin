@@ -40,6 +40,12 @@ const paired: PageObject = {
 
 				client.waitForElementVisible(taget).click(taget);
 			},
+
+			deletePairedWallet: (client: NightWatchClient): void => {
+				const target = '//li/a[@class="removeCorrespondentList"]';
+
+				client.waitForElementVisible(target).click(target);
+			},
 		},
 	],
 
