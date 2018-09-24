@@ -86,8 +86,8 @@ const navMenu: PageObject = {
 				client.waitForElementVisible(start).click(start);
 			},
 
-			selectAvatar: (client: NightWatchClient): void => {
-				const target = '//div[@class="avatar-wallet ng-binding"]';
+			selectAvatar: (client: NightWatchClient, wallet: string): void => {
+				const target = `//ul/li[${wallet}]//div[@class="custom_edit_icon"]`;
 
 				client.waitForElementVisible(target).click(target);
 			},

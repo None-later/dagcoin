@@ -93,11 +93,11 @@ export const androidSecurityTest = {
         client.waitForElementVisible('//div[text()="Global preferences"]');
 
         menu.openSideBarMenu(client);
-        menu.selectAvatar(client);
+        menu.selectAvatar(client, '1');
 
         client.refresh();
         client.waitForElementNotPresent('//div//span[text()="Updating Wallet..."]');
-        client.waitForElementVisible('//div[@id="walletHome"]');
+        // client.waitForElementVisible('//div[@id="walletHome"]');
 
         client.waitForElementVisible('//form//label//span[text()="Enter your password"]');
         client.waitForElementVisible('//div/input[@type="password"]');
