@@ -109,8 +109,8 @@ const globalPage: PageObject = {
 				const target = `//div[@class="row"]/div[@ng-click="changeLevel('${level}')"]`;
 
 				client.waitForElementVisible(target).click(target);
-			}
-		},
+			},
+		}
 	],
 
 	elements: {},
