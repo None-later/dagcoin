@@ -104,7 +104,13 @@ const globalPage: PageObject = {
 
 				client.waitForElementVisible(target).click(target);
 			},
-		},
+			selectSessionLevel: (client: NightWatchClient, level: string): void => {
+				// levels : 'error', 'warn', 'info', 'debug'
+				const target = `//div[@class="row"]/div[@ng-click="changeLevel('${level}')"]`;
+
+				client.waitForElementVisible(target).click(target);
+			},
+		}
 	],
 
 	elements: {},

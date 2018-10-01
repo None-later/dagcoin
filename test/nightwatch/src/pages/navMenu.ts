@@ -91,6 +91,12 @@ const navMenu: PageObject = {
 
 				client.waitForElementVisible(target).click(target);
 			},
+
+			openSessionLog: (client: NightWatchClient): void => {
+				client.waitForElementVisible('//*[@id="mainSection"]/section/div[1]/div[3]/ng-transclude/div');
+				
+				client.click('//*[@id="mainSection"]/section/div[1]/div[3]/ng-transclude/div');
+			}
 		},
 	],
 
