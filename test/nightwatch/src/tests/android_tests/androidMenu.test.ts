@@ -80,18 +80,6 @@ export const androidMenuTest = {
         client.waitForElementVisible(`//div//span[text()="You don't have any paired devices yet."]`);
         client.expect.element('//div/p[2]/span').text.to.contains('Press "+" in the right upper corner to pair with device.').before();
 
-        // Select My Wallet from bottom menu
-        menu.selectBottomMenuItem(client, 'My Wallet');
-        client.waitForElementVisible('//div[@id="walletHome"]');
-
-        client.waitForElementVisible('//div/span[@title="Notifications"]');
-        client.waitForElementVisible('//div[@class="start-sending"]');
-        
-        client.expect.element('//div/p[@class="heading"]/span').text.to.contain('Start sending Dagcoin').before();
-        client.expect.element('//div/p[@class="explanation"]/span').text.to.contain('To get started, buy Dagcoin or share your address. You can receive Dagcoin from other Dagcoin wallets.').before();
-
-        client.waitForElementVisible('//button/span[text()="Buy Dagcoin"]');
-
     },
 
     'Android navigate throw side menu ': (client: NightWatchClient): void => {
@@ -250,6 +238,93 @@ export const androidMenuTest = {
                     client.waitForElementVisible('//div/span[text()="Session log"]');
                 };
             };
+
+        menu.goBack(client);    
+        menu.openSideBarMenu(client);
+        menu.selectWallet(client, 'Small Expenses Wallet');
+
+    },
+
+    'Check for "My wallet" menu of new wallet and recover wallet': (client: NightWatchClient): void => {
+        const androidSeed: string = process.env.ANDROID_SEED || ''; 
+        const global: NightWatchClient = client.page.globalPage();
+        const menu: NightWatchClient = client.page.navMenu();
+
+        // Check for new wallet my wallet menu 
+        const newWalletHome: {[key: string]: string} = {
+            'heading': texts.myWallet.heading,
+            'explanation': texts.myWallet.explanation,
+            'show-address': texts.myWallet.showAddress
+        };
+
+        for (const values of Object.keys(newWalletHome)){
+            client.expect.element(`//div/p[@class="${values}"]/span`).text.to.contain(`${newWalletHome[values]}`).before();
+        };
+        client.waitForElementVisible('//button/span[text()="Buy Dagcoin"]');
+
+        // Recover wallet
+        menu.openSideBarMenu(client);
+        menu.selectSideMenuOption(client, 'Settings');
+
+        menu.selectSettingOption(client, 'Security');
+        menu.selectSettingOption(client, 'Recover wallet');
+
+		client.click('//*[@id="inputMnemonic"]');
+        client.sendKeys('//*[@id="inputMnemonic"]', androidSeed);
+
+		global.clickOnButton(client,'Recover');
+        client.waitForElementVisible('//div[@class="alertModal"]');
+        
+        client.refresh();
+        client.waitForElementVisible('//div[@id="walletHome"]');
+
+        // Check for recover`d wallet 
+        client.waitForElementVisible('//div[@class="dag_transactions_list"]');
+        client.waitForElementVisible('//h4/span[text()="Transactions History"]');
+
+        client.waitForElementVisible('//button//span[text()="Export To CSV"]');
+
+        const transDataType: {[key: string]: string} = {
+            'status': 'Wallet balance',
+            'sum': 'Tap and hold balance to hide it',
+            'expand': '0'
+        };
+
+        for (const type of Object.keys(transDataType)){
+            client.waitForElementVisible(`//div//span[text()="${transDataType[type]}"]`);
+            client.waitForElementVisible(`//ul//div[@class="transaction_${type}"]`);
+        };
+
+        // Check for notifications
+        client.waitForElementVisible('//div/span[@title="Notifications"]');
+        client.click('//div/span[@title="Notifications"]');
+
+        client.waitForElementVisible('//h3/span[text()="Notifications"]');
+        global.closeQrScanner(client);
+
+        // Check transaction details
+        client.waitForElementVisible('//ul//div[@class="transaction_expand"]');
+        client.click('//ul//div[@class="transaction_expand"]');
+        client.waitForElementVisible('//h4/span[text()="Transaction details"]');
+        client.waitForElementVisible('//h4/span[text()="Transaction status"]');
+
+        const dealInfo = [
+            'To',
+            'Status',
+            'Date:',
+            'Fee' ,
+            'Unit', 
+            'Amount'
+        ];
+
+        dealInfo.forEach(type => {
+            client.waitForElementVisible(`//li//span[text()="${type}"]`);
+        });
+
+        // select make new payment
+        global.clickOnSpanButton(client, 'Make new payment');
+        client.waitForElementVisible('//div[@id="send"]');
+
     },
 
 	'Android Close app': (client: NightWatchClient): void => {
