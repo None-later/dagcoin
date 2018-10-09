@@ -103,7 +103,13 @@ const navMenu: PageObject = {
 
 				client.waitForElementVisible(target).click(target);
 
-			}
+			},
+			
+			testMenus: (client: NightWatchClient, menu: string): void => {
+				const target = '' + menu + '';
+
+				client.waitForElementVisible(target).click(target);
+			},
 		},
 	],
 
