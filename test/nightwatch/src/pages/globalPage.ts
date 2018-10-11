@@ -110,7 +110,7 @@ const globalPage: PageObject = {
 
 				client.waitForElementVisible(target).click(target);
 			},
-		}
+		},
 	],
 
 	elements: {},
