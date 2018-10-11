@@ -94,17 +94,16 @@ const navMenu: PageObject = {
 
 			openSessionLog: (client: NightWatchClient): void => {
 				client.waitForElementVisible('//*[@id="mainSection"]/section/div[1]/div[3]/ng-transclude/div');
-				
+
 				client.click('//*[@id="mainSection"]/section/div[1]/div[3]/ng-transclude/div');
 			},
 
-			selectWallet: (client: NightWatchClient, wallet : string): void => {
-				const target = '//li/a/div[2][text()="'+ wallet +'"]';
+			selectWallet: (client: NightWatchClient, wallet: string): void => {
+				const target = '//li/a/div[2][text()="' + wallet + '"]';
 
 				client.waitForElementVisible(target).click(target);
-
 			},
-			
+
 			testMenus: (client: NightWatchClient, menu: string): void => {
 				const target = '' + menu + '';
 
