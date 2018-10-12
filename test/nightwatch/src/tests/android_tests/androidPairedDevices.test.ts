@@ -135,7 +135,22 @@ import texts from '../../texts/walletText';
         
         global.clickOnSpanButton(client, 'Yes'); 
         client.waitForElementNotPresent('//div[@class="bubble from-me"]/span[text()="Hello"]')
+ 
+        pair.sendMessageForm(client, 'insert');
+        pair.sendMessage(client);
 
+        client.waitForElementVisible('//div[@class="bubble from-me"]');
+
+        pair.sendMessageForm(client, 'request');
+        client.waitForElementVisible('//div//h3/span[text()="Request specific amount"]');
+        client.waitForElementVisible('//div/input[@type="number"]');
+
+        global.fillInput(client, 'amount', '0.0256')
+        global.clickOnSpanButton(client, 'Request payment');    
+
+        pair.sendMessage(client);
+        client.expect.element('//div[@class="bubble from-me"]/i').text.to.contain('Payment request: 0.0256 DAG to ').before();
+    
         // Rename devices
         global.selectAdditionalOption(client, 'Edit');
         global.clearInput(client, 'name');
@@ -149,7 +164,7 @@ import texts from '../../texts/walletText';
         // Remove added device from list 
         global.clickOnSpanButton(client, 'Remove a device');
         pair.deletePairedWallet(client);
-        client.waitForElementVisible(`//p/span[text()="You don't have any paired devices yet."]`)
+        client.waitForElementVisible(`//p/span[text()="You don't have any paired devices yet."]`);
     },    
     
  	'Android Close app': (client: NightWatchClient): void => {
