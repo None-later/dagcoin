@@ -94,6 +94,18 @@ export const androidAddressBook = {
         global.clickOnButton(client, 'Send');
         client.waitForElementVisible('//div[@id="send"]');
 
+        // Check that user is abel to select user from address book in send menu
+        global.clearInput(client, 'address');
+        client.waitForElementVisible('//div/a/i[@class="icon icon-d icon-wallet"]');
+        client.click('//div/a/i[@class="icon icon-d icon-wallet"]');
+
+        client.waitForElementVisible('//section/h1/span[text()="Address book"]');
+        client.waitForElementVisible('//li//div[text()="Demo Test"]');
+        client.expect.element('//div[@class="cursor-pointer"]/div[2]').text.to.contain('7QLIMCPHOVMZJQWGIQULVGSQYJSIPIHQ').before();
+
+        client.click('//li//div[text()="Demo Test"]');
+        client.waitForElementNotPresent('//section/h1/span[text()="Address book"]');
+
         // Open address book and check for favorites 
         menu.openSideBarMenu(client);
         menu.selectSideMenuOption(client, 'Address Book');
