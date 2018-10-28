@@ -22,7 +22,7 @@ export const androidAddNewWallet = {
 
         client.click('//input[@name="walletName"]');
         client.setValue('//div[@tab-click="create.setTotalCosigners(1)"]//input[@name="walletName"]',['createdByTest']);
-
+        client.pause(1500);
         global.clickOnSpanButton(client, 'Create new wallet');
         client.waitForElementVisible('//div/div[text()="createdByTest"]');
 
