@@ -18,11 +18,12 @@ This project is powered by Nightwatch.js
 - ```yarn selenium-setup``` [Install selenium dependencies such as server and webdriver NB! NW JS SDK must be installed before starting tests + .env configured + JAVA 8 JRE]
 - ```yarn start-desktop``` [Run tests in NW.js container]
 - ```yarn start-android``` [Run tests in android emulator]
-- ```export ENV_URL='http://{YourEnvironmentUrl}.ee/'``` [Set env url for tests]
 
 
 # APPIUM AND ANDROID EMULATOR 
 - ```CHROMEDRIVER_VERSION=2.28 npm install appium@1.8.0 -g``` [Install appium, 1.8.0 has been tested at current build and is working properly, newer versions may have problems with context switching to WEBVIEW]
+- Chromedriver version for Android 7.1.1 (Using webview 55) - 2.28
+- Chromedriver version for Android 8.1(Using webview 61) - 2.34
 
 - Setup android studio and install Android Emulator NB! SDK_25 only! newer versions might have problems and are not tested yet
 # Remote executions
@@ -32,18 +33,20 @@ This project is powered by Nightwatch.js
 
 # CONFIGURE .ENV in nightwatch root directory
 
+- !! example below
+
 ```json
 #NW.js PATH
 NW_CHROMEDRIVER='/home/{user}/.nwjs/0.24.3-sdk/chromedriver'
 NW_APP='/home/{user}/Projects/dag-wallet'
 #APPIUM
 APP_APK='{apk path - local + http+https paths are supported}'
-ANDROID_PLATFORM='7.1'
+ANDROID_PLATFORM='7.1'  
 DEVICE_NAME='emulator-5554'
 
 #SELENIUM
 SELENIUM_HOST='{OPTIONAL: desired selenium host}' ! Should be defined for remote execution fe: selenium-grid.testreel.com
-SELENIUM_PORT='{OPTIONAL: desired selenium port}' ! Should be defined for remote execution fe: 443 for estreel grid
+SELENIUM_PORT='{OPTIONAL: desired selenium port}' ! Should be defined for remote execution fe: 443 for Testreel grid
 GRID_USER='USER' ! Remote grid user
 GRID_SECRET='SECRET' !Remote grid access_key 
 USE_SSL={OPTIONAL: if using 443 port and SSL then true, else false/undefined} ! If using testreel grid then true 

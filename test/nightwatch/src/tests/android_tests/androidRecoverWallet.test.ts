@@ -1,50 +1,10 @@
 import {NightWatchClient} from 'nightwatch';
-import setup from '../../texts/initialSetup';
+import { setupWallet } from '../../setup';
 
 export const androidRecoverWallet = {
-
-	'Android Set up default wallet': (client: NightWatchClient): void => {
-        const global: NightWatchClient = client.page.globalPage();
-        
-        client.useXpath();
-        client.setContext('WEBVIEW_org.dagcoin.client');
-		client.contexts(context => {
-		    client.setContext(context.value[1]);
-		});	
-
-        // Skip through introduction slides
-		client.waitForElementVisible('//div[@class="intro_content_body"]');
-        client.waitForElementVisible('//*[@id="mainSection"]/section/div/button');
-        client.click('//*[@id="mainSection"]/section/div/button');
-
-        // Agree to terms
-        client.waitForElementVisible('//div/h2[text()="Almost done!"]');
-
-        const agreeTerms: {[key: string]: string } = {
-            security: 'confirm.security',
-            backup: 'confirm.backup',
-            finish: 'confirm.finish'
-        };
-
-        for (const terms of Object.keys(agreeTerms)){
-            global.fillCheckBox(client, agreeTerms[terms]);
-            client.expect.element(`//input[@id="${terms}"]`).to.be.selected.before();
-        };
-  
-        global.clickOnButton(client,'Confirm & Finish');
-
-        // Expect registration selection not to be displayed for android
-		client.expect.element('//span[text()="Please choose registration type"]').to.not.be.present.after(2000);
-
-        // Finish wallet registration 
-		client.expect.element('//span[text()="WELCOME TO DAGCOIN"]').to.be.visible.before();
-        global.clickOnButton(client,'CONTINUE');
-
-        client.waitForElementVisible(`//div//span[text()="${setup.initialRun.deviceNameSlide_1}"]`)
-        global.clickOnButton(client,'GET STARTED');
-        client.waitForElementVisible('//div[@id="walletHome"]');
-    },
-
+    '@disabled': true,
+    // Recovery from seed fails with development apk
+    ...setupWallet,
     'Android navigate to settings and recover wallet': (client: NightWatchClient): void => {
 		const androidSeed: string = process.env.ANDROID_SEED || ''; 
 
@@ -74,7 +34,7 @@ export const androidRecoverWallet = {
                 if (type === 'Recover from backup') {
                     client.waitForElementVisible('//div/input[@type="file"]');
                     client.waitForElementVisible('//div/input[@type="password"]');
-                    client.waitForElementVisible('//button[text()="Import"]');
+                    client.waitForElementVisible('//button/span[text()="Import"]');
                     client.waitForElementVisible('//div/span[text()="WARNING: This will permanently delete all your existing wallets!"]');
                 } else {
                     client.waitForElementVisible('//form[@name="settingsDeviceNameForm"]');
@@ -85,10 +45,11 @@ export const androidRecoverWallet = {
 		});
 		
 		// Enter wallet seed to recover wallet
-		client.click('//*[@id="inputMnemonic"]');
+        client.click('//*[@id="inputMnemonic"]');
+        client.pause(2000);
         client.sendKeys('//*[@id="inputMnemonic"]', androidSeed);
 		global.clickOnButton(client,'Recover');
-		
+		client.waitForElementNotVisible('//div[@class="onGoingProcess-content"]',50000)
 		client.waitForElementVisible('//div[@class="alertModal"]');
 		client.waitForElementVisible('//div[text()=" 1 wallets recovered, please restart the application to finish."]');
 

@@ -40,8 +40,8 @@ export const addNewContact = {
 		// Continue
 		global.clickOnButton(client,'CONTINUE');
         client.waitForElementVisible('//*[@id="inputMnemonic"]');
-        client.pause(1500);
         client.click('//*[@id="inputMnemonic"]');
+        client.pause(2000);
         client.sendKeys('//*[@id="inputMnemonic"]', desktopSeed);
         global.clickOnButton(client,'Recover');
         
@@ -55,7 +55,7 @@ export const addNewContact = {
         const global: NightWatchClient = client.page.globalPage();
         const menu: NightWatchClient = client.page.navMenu();
 
-        //------------------- Wallet is open
+        // ------------------- Wallet is open
         // Expect following elements to be located on new wallet home site
         client.waitForElementVisible('//div[@id="walletHome"]')
 
@@ -122,7 +122,7 @@ export const addNewContact = {
 
         client.waitForElementVisible('//div[@title="Edit Contact"]');
         client.sendKeys('//*[@id="description"]', 'This is a demo test account');
-        client.pause(500);
+        client.pause(2000);
         global.clickOnButton(client, 'Save');
 
         // Check for contact data

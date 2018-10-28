@@ -3,6 +3,7 @@ import setup from '../../texts/initialSetup';
 import texts from '../../texts/walletText';
 
  export const androidPairedDevices = {
+    '@disabled': true,
  	'Android Set up default wallet': (client: NightWatchClient): void => {
         const global: NightWatchClient = client.page.globalPage();
         
@@ -146,8 +147,9 @@ import texts from '../../texts/walletText';
         client.waitForElementVisible('//div/input[@type="number"]');
 
         global.fillInput(client, 'amount', '0.0256')
+        client.pause(1500);
         global.clickOnSpanButton(client, 'Request payment');    
-
+        
         pair.sendMessage(client);
         client.expect.element('//div[@class="bubble from-me"]/i').text.to.contain('Payment request: 0.0256 DAG to ').before();
     

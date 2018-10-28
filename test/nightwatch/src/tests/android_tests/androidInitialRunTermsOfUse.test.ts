@@ -2,7 +2,8 @@ import {NightWatchClient} from 'nightwatch';
 import setup from '../../texts/initialSetup';
 
 export const androidInitialRunTermsOfUse = {
-
+    '@disabled': true,
+    
 	'Android Skip to terms of use and check required points': (client: NightWatchClient): void => {
 		const global: NightWatchClient = client.page.globalPage();
         client.useXpath();

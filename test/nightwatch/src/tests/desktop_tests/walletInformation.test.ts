@@ -42,6 +42,7 @@ export const walletInformation = {
         client.waitForElementVisible('//*[@id="inputMnemonic"]');
         client.pause(1500);
         client.click('//*[@id="inputMnemonic"]');
+        client.pause(2000);
         client.sendKeys('//*[@id="inputMnemonic"]', desktopSeed);
         global.clickOnButton(client,'Recover');
         
@@ -55,7 +56,7 @@ export const walletInformation = {
         const global: NightWatchClient = client.page.globalPage();
         const menu: NightWatchClient = client.page.navMenu();
 
-        //------------------- Wallet is open
+        // ------------------- Wallet is open
         // Expect following elements to be located on new wallet home site
         client.waitForElementVisible('//div[@id="walletHome"]')
 

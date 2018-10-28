@@ -42,9 +42,9 @@ export const walletMenuOptions = {
         client.waitForElementVisible('//*[@id="inputMnemonic"]');
         client.pause(1500);
         client.click('//*[@id="inputMnemonic"]');
+        client.pause(2000);
         client.sendKeys('//*[@id="inputMnemonic"]', desktopSeed);
         global.clickOnButton(client,'Recover');
-        
         client.pause(7000);
 
         client.refresh();
