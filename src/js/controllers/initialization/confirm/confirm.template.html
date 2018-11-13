@@ -22,10 +22,10 @@
     </div>
 
     <div ng-show="confirm.backup && confirm.security" ng-class="{'animated': confirm.backup && confirm.security}"
-         class="intro_confirm_content_trigger fasten slideInUp">
-        <input class="checkbox" ng-model="confirm.finish" type="checkbox" id="finish">
+        class="intro_confirm_content_trigger fasten slideInUp">
+        <input class="checkbox" type="checkbox" ng-model="confirm.finish" id="finish">
         <label for="finish">
-            I have read, understood and agree to <span ng-click="confirm.showTermsOfUse()">Terms Of Use</span>.
+            I have read, understood and agree to <span ng-click="confirm.showTermsOfUse(confirm.finish)">Terms Of Use</span>.
         </label>
         <button ng-disabled="!confirm.finish" class="btn btn_red-full" ng-click="confirm.agree()">Confirm & Finish</button>
     </div>

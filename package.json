@@ -66,7 +66,9 @@
     "pretest": "npm run eslint && npm run stylelint",
     "test": "./node_modules/.bin/grunt test-coveralls",
     "eslint": "./node_modules/eslint/bin/eslint.js --cache ./src",
-    "stylelint": "./node_modules/.bin/stylelint ./src/css/*.scss"
+    "stylelint": "./node_modules/.bin/stylelint ./src/css/*.scss",
+    "create": "grunt desktop:live && npm run copy-node-module",
+    "copy-node-module": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./devbuilds/copy-node-module.ps1"
   },
   "devDependencies": {
     "adm-zip": "^0.4.7",

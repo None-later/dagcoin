@@ -27,7 +27,9 @@
       }, 100);
     };
 
-    vm.showTermsOfUse = () => {
+    vm.showTermsOfUse = (state) => {
+      // quick fix due to angularjs checkbox issue
+      vm.finish = !state;
       ngDialog.open({
         template: `<div class="navbar-container invert">
                     <div class="navbar-container-triggers">
@@ -41,11 +43,9 @@
                    <dag-background></dag-background>`,
         plain: true,
         className: 'terms_of_use_confirm',
-        scope: $scope,
-        preCloseCallback: () => {
-          vm.finish = true;
-        }
+        scope: $scope
       });
     };
+
   }
 })();

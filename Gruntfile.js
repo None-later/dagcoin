@@ -371,7 +371,7 @@ module.exports = function (grunt) {
         appName: '<%= process.env.nwjsAppName %>',
         flavor: '<%= process.env.nwjsFlavor %>',
         buildDir: '../byteballbuilds',
-        version: '0.14.7',
+        version: '0.24.3',
         zip: false,
         macIcns: './public/img/icons/icon-white-outline.icns',
         winIco: './public/img/icons/dagcoin.ico',
