@@ -102,6 +102,10 @@
       });
     };
 
+    vm.closeDeviceDialog = () => {
+      vm.step = 'registration_type';
+    };
+
     vm.init();
   }
 })();
