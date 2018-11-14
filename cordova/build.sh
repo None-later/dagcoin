@@ -106,6 +106,9 @@ if [ ! -d $PROJECT ]; then
 
 	if [ $CURRENT_OS == "IOS" ]; then
 		cordova plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git#v7.0.4
+		checkOK
+		cordova plugin add https://github.com/haugasdev/dag-cordova-settings
+		checkOK
 	else
 		phonegap plugin add phonegap-plugin-barcodescanner
 		checkOK

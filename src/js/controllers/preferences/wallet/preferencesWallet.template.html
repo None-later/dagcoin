@@ -8,7 +8,7 @@
     <li style="padding: 13px 30px 5px; display: flex; flex-direction: column;">
       <div translate>Single address wallet</div>
       <div class="right text-gray">
-        <switch ng-model="index.isSingleAddress" class="green right"
+        <switch ng-swipe-right="preventNavSwipe($event)" ng-model="index.isSingleAddress" class="green right"
                 data-disabled="preferences.numAddresses > 1 || preferences.numCosigners > 1"></switch>
       </div>
       <div class="value m10b p70r" style="white-space: initial; text-align: left;">

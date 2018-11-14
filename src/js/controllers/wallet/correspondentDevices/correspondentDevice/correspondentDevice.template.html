@@ -24,12 +24,12 @@
     </div>
     <br>
     <div>
-      <switch class="green right" ng-model="correspondent.my_record_pref"></switch>
+      <switch ng-swipe-right="preventNavSwipe($event)" class="green right" ng-model="correspondent.my_record_pref"></switch>
       <div translate>My recording preference</div>
     </div>
     <div class="clear"></div>
     <div class="switch-line">
-      <switch  class="green right" ng-model="correspondent.peer_record_pref" data-disabled="true"></switch>
+      <switch ng-swipe-right="preventNavSwipe($event)" class="green right" ng-model="correspondent.peer_record_pref" data-disabled="true"></switch>
       <div translate>Their recording preference</div>
     </div>
   </div>

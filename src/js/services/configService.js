@@ -69,7 +69,7 @@
         },
       },
       autoUpdateWitnessesList: true,
-      logLevel: 'debug',
+      logLevel: 'info',
       enableShowReceiveOnPassword: false
     };
 

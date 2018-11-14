@@ -597,11 +597,8 @@
     })
     .run(($rootScope, $state, $stateParams, $log, uriHandler, Device, profileService, configService, $timeout, nodeWebkit, uxLanguage, animationService, backButton, go) => {
       const isCordova = Device.cordova;
-      if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', () => {
-          FastClick.attach(document.body);
-        }, false);
-      }
+
+      FastClick.attach(document.body);
 
       uxLanguage.init();
 

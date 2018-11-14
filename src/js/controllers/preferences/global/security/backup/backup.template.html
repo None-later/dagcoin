@@ -132,7 +132,7 @@
               </div>
             </div>
             <div class="size-14 m20b text-gray" ng-show="!backup.isCordova">
-              <switch name="bCompression" ng-model="backup.bCompression" class="green right"></switch>
+              <switch ng-swipe-right="preventNavSwipe($event)" name="bCompression" ng-model="backup.bCompression" class="green right"></switch>
               <div translate>Compress the file? (Slower)</div>
             </div>
             <div class="form-group">

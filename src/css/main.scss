@@ -3535,3 +3535,7 @@ p.color_red {
   left: 140px;
   padding: 15px;
 }
+
+.bottom_navbar, .backup, .navbar-container, #walletHome {
+  -webkit-user-select: none;
+}

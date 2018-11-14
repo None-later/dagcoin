@@ -9,9 +9,9 @@
     .module('copayApp.directives')
     .directive('dagCsvHistory', dagCsvHistory);
 
-  dagCsvHistory.$inject = ['profileService', 'configService', 'sharedService', '$rootScope', 'exportTransactions', 'gettextCatalog'];
+  dagCsvHistory.$inject = ['profileService', 'configService', 'sharedService', '$rootScope', 'exportTransactions', 'gettextCatalog', 'Device'];
 
-  function dagCsvHistory(profileService, configService, sharedService, $rootScope, exportTransactions, gettextCatalog) {
+  function dagCsvHistory(profileService, configService, sharedService, $rootScope, exportTransactions, gettextCatalog, Device) {
     return {
       restrict: 'E',
       templateUrl: 'directives/dagCsvHistory/dagCsvHistory.template.html',
@@ -26,9 +26,12 @@
           $rootScope.$emit('Local/generatingCSV', true);
           exportTransactions.toCsvFile(currentWallet, fc, unitValue,
             (fileName) => {
+              let message = `${gettextCatalog.getString('Download completed')} : ${fileName}`;
+              if (Device.cordova && cordova && cordova.platformId === 'ios') {
+                message = `${gettextCatalog.getString('Download completed')} : ${fileName}. ${gettextCatalog.getString('Check IOS Files App to view the download')}`;
+              }
               $rootScope.$emit('Local/generatingCSV', false);
               $rootScope.$apply();
-              const message = `${gettextCatalog.getString('Download completed')} : ${fileName}`;
               $rootScope.$emit('Local/ShowAlert', message, 'fi-check', () => { });
             },
             (err) => {

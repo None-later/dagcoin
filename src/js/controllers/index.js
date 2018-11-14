@@ -661,6 +661,11 @@ no-nested-ternary,no-shadow,no-plusplus,consistent-return,import/no-extraneous-d
           self.openMenu();
         };
 
+        $rootScope.preventNavSwipe = ($event) => {
+          $event.stopPropagation();
+          $event.preventDefault();
+        };
+
         self.openNotifications = () => {
           modalNotifications();
         };

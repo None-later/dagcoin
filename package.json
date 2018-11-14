@@ -67,7 +67,7 @@
     "test": "./node_modules/.bin/grunt test-coveralls",
     "eslint": "./node_modules/eslint/bin/eslint.js --cache ./src",
     "stylelint": "./node_modules/.bin/stylelint ./src/css/*.scss",
-    "resgen-ios": "crgen -p ios -i ./cordova/resources/icon.png -s ./cordova/resources/splash.png -o ./cordova && rm -rf ./cordova/ios/icons && mv ./cordova/ios/icon ./cordova/ios/icons"
+    "resgen-ios": "crgen -p ios -i ./cordova/resources/icon.png -s ./cordova/resources/splash.png -o ./cordova"
   },
   "devDependencies": {
     "adm-zip": "^0.4.7",
