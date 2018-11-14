@@ -102,7 +102,7 @@
       });
     };
 
-    vm.closeDeviceDialog = () => {
+    vm.goBackToRegistretionType = () => {
       vm.step = 'registration_type';
     };
 
