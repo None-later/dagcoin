@@ -1,6 +1,8 @@
 (() => {
   'use strict';
 
+  const device = require('core/device.js');
+
   angular
     .module('copayApp.controllers')
     .controller('SplashCtrl', SplashCtrl);
@@ -16,11 +18,11 @@
 
     vm.saveDeviceName = () => {
       $log.debug(`saveDeviceName: ${vm.deviceName}`);
-      const device = require('core/device.js');
       device.setDeviceName(vm.deviceName);
       const opts = { deviceName: vm.deviceName };
       configService.set(opts, (err) => {
         if (err) {
+          console.log(`Local/DeviceError: ${err}`);
           vm.$emit('Local/DeviceError', err);
         }
         $timeout(() => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-mixed-operators,no-use-before-define,new-cap,
 no-nested-ternary,no-shadow,no-plusplus,consistent-return,import/no-extraneous-dependencies,import/no-unresolved, no-undef */
 (function () {
@@ -15,7 +16,19 @@ no-nested-ternary,no-shadow,no-plusplus,consistent-return,import/no-extraneous-d
         const objectHash = require('core/object_hash.js');
         const ecdsaSig = require('core/signature.js');
         const breadcrumbs = require('core/breadcrumbs.js');
-        const Bitcore = require('bitcore-lib');
+
+        let Bitcore;
+        try {
+          Bitcore = require('bitcore-lib');
+        } catch (err) {
+          console.log(`index2 Error: ${JSON.stringify(err)}`);
+          // strange hack for require bitcore
+          if (global._bitcore) {
+            delete global._bitcore;
+          }
+          Bitcore = require('bitcore-lib');
+        }
+
         const isCordova = Device.cordova;
         const acceptMessage = gettextCatalog.getString('Yes');
         const cancelMessage = gettextCatalog.getString('No');

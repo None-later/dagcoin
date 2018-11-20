@@ -1,10 +1,38 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars, new-cap */
+
 const crypto = require('crypto');
+
 const $ = require('preconditions').singleton();
 const lodash = require('lodash');
 
-const Bitcore = require('bitcore-lib');
-const Mnemonic = require('bitcore-mnemonic');
+let Bitcore;
+try {
+    Bitcore = require('bitcore-lib');
+} catch (err) {
+  console.log(`Credentials Error: ${JSON.stringify(err)}`);
+  // strange hack for require bitcore
+  if (global._bitcore) {
+    delete global._bitcore;
+  }
+  Bitcore = require('bitcore-lib');
+}
+
+let Mnemonic;
+try {
+  if (global._bitcore) {
+    delete global._bitcore;
+  }
+    Mnemonic = require('bitcore-mnemonic');
+} catch (err) {
+    console.log(`Credentials Error: ${JSON.stringify(err)}`);
+    // strange hack for require bitcore
+    if (global._bitcore) {
+      delete global._bitcore;
+    }
+    Mnemonic = require('bitcore-mnemonic');
+}
+
 const sjcl = require('sjcl');
 
 const Common = require('./common');
@@ -66,16 +94,16 @@ Credentials.createWithMnemonic = function (network, passphrase, language, accoun
     throw new Error('Unsupported language');
   }
   $.shouldBeNumber(account);
-
+  console.log('createWithMnemonic');
   let m = new Mnemonic(wordsForLang[language]);
   while (!Mnemonic.isValid(m.toString())) {
     m = new Mnemonic(wordsForLang[language]);
   }
   const x = new Credentials();
-
+  const xPrivKey = m.toHDPrivateKey(passphrase, network);
   x.network = network;
   x.account = account;
-  x.xPrivKey = m.toHDPrivateKey(passphrase, network).toString();
+  x.xPrivKey = xPrivKey.toString();
   x.expand();
   x.mnemonic = m.phrase;
   x.mnemonicHasPassphrase = !!passphrase;

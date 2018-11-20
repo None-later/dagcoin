@@ -225,6 +225,7 @@
       const walletClient = bwcService.getClient();
       const network = options.networkName || 'livenet';
 
+      console.log(`seedWallet opts: ${JSON.stringify(opts)}`);
 
       if (options.mnemonic) {
         try {
@@ -259,22 +260,21 @@
       } else {
         const lang = uxLanguage.getCurrentLanguage();
         console.log(`will seedFromRandomWithMnemonic for language ${lang}`);
+        const mnemonicData = {
+          network,
+          passphrase: options.passphrase || 'passphrase',
+          language: lang,
+          account: options.account || 0
+        };
+        console.log(`mnemonicData: ${JSON.stringify(mnemonicData)}`);
         try {
-          walletClient.seedFromRandomWithMnemonic({
-            network,
-            passphrase: options.passphrase,
-            language: lang,
-            account: options.account || 0,
-          });
+          walletClient.seedFromRandomWithMnemonic(mnemonicData);
         } catch (e) {
           $log.info(`Error creating seed: ${e.message}`);
           if (e.message.indexOf('language') > 0) {
             $log.info('Using default language for mnemonic');
-            walletClient.seedFromRandomWithMnemonic({
-              network,
-              passphrase: options.passphrase,
-              account: options.account || 0,
-            });
+            delete mnemonicData.language;
+            walletClient.seedFromRandomWithMnemonic(mnemonicData);
           } else {
             return cb(e);
           }
@@ -286,6 +286,7 @@
 
     root.createNewProfile = function (opts, cb) {
       console.log('createNewProfile');
+      console.log(`createNewProfile opts: ${JSON.stringify(opts)}`);
       if (opts.noWallet) {
         return cb(null, Profile.create());
       }
@@ -295,7 +296,9 @@
         }
         const config = configService.getSync();
         const device = require('core/device.js');
+
         const tempDeviceKey = device.genPrivKey();
+
         // initDeviceProperties sets my_device_address needed by walletClient.createWallet
         walletClient.initDeviceProperties(walletClient.credentials.xPrivKey, null, config.hub, config.deviceName);
         const walletName = gettextCatalog.getString('Small Expenses Wallet');
@@ -564,6 +567,19 @@
       root.profile.credentials = newCredentials;
       // root.profile.my_device_address = device.getMyDeviceAddress();
 
+      storageService.storeProfile(root.profile, cb);
+    };
+
+    root.updateWalletNameFC = (cb, walletName) => {
+      const fc = root.focusedClient;
+      const updatedCredentials = root.profile.credentials.map((el) => {
+          if (el.walletId === fc.credentials.walletId) {
+            el.walletName = walletName;
+          }
+          return el;
+      });
+      root.profile.credentials = updatedCredentials;
+      root.focusedClient.credentials.walletName = walletName;
       storageService.storeProfile(root.profile, cb);
     };
 

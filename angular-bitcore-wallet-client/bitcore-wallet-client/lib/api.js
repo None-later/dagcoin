@@ -1,21 +1,35 @@
+/* eslint-disable no-underscore-dangle */
 // todo: suppressed new-cap rule, because coode is coming from byteball core, should be fixed later.
 /** @namespace Client.API */
 
 const ecdsaSig = require('core/signature.js');
 const breadcrumbs = require('core/breadcrumbs.js');
-const constants = require('core/constants.js');
+// const constants = require('core/constants.js');
 
-const isTestnet = constants.version.match(/t$/);
+// const isTestnet = constants.version.match(/t$/);
 const lodash = require('lodash');
 const $ = require('preconditions').singleton();
 const util = require('util');
 const events = require('events');
-const Bitcore = require('bitcore-lib');
+const Credentials = require('./credentials');
+
+let Bitcore;
+try {
+  Bitcore = require('bitcore-lib');
+} catch (err) {
+  console.log(`Api Error: ${JSON.stringify(err)}`);
+    // strange hack for require bitcore
+    if (global._bitcore) {
+      delete global._bitcore;
+    }
+    Bitcore = require('bitcore-lib');
+}
+
 const Common = require('./common');
 
 const Constants = Common.Constants;
 const log = require('./log');
-const Credentials = require('./credentials');
+
 const Errors = require('./errors/errordefinitions');
 
 if (process.browser) {
@@ -88,7 +102,6 @@ API.prototype.seedFromRandomWithMnemonic = function (opts) {
   $.checkArgument(arguments.length <= 1, 'DEPRECATED: only 1 argument accepted.');
   $.checkArgument(lodash.isUndefined(opts) || lodash.isObject(opts), 'DEPRECATED: argument should be an options object.');
   const options = opts || {};
-  console.log(`client: seedFromRandomWithMnemonic ${JSON.stringify(opts)}`);
   this.credentials = Credentials.createWithMnemonic(options.network || 'livenet', options.passphrase, options.language || 'en', options.account || 0);
 };
 

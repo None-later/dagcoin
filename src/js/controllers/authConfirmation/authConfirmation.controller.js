@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable new-cap, no-undef */
 (function () {
   'use strict';
@@ -14,7 +15,6 @@
    - allow to change keys of the wallet, update definitions for all apps/domains saved so far
    - send the chain of key changes with the response
    */
-
   angular
     .module('copayApp.controllers')
     .controller('AuthConfirmationCtrl', AuthConfirmationCtrl);
@@ -22,7 +22,18 @@
   AuthConfirmationCtrl.$inject = ['$scope', 'profileService', 'go', 'authService', 'lodash'];
 
   function AuthConfirmationCtrl($scope, profileService, go, authService, lodash) {
-    const Bitcore = require('bitcore-lib');
+    let Bitcore;
+    try {
+      Bitcore = require('bitcore-lib');
+    } catch (err) {
+      console.log(`AuthConfirmation Error: ${JSON.stringify(err)}`);
+        // strange hack for require bitcore
+        if (global._bitcore) {
+          delete global._bitcore;
+        }
+      Bitcore = require('bitcore-lib');
+    }
+
     const ecdsaSig = require('core/signature.js');
     const bbWallet = require('core/wallet.js');
 

@@ -16,7 +16,7 @@
     const indexScope = $scope.index;
     const basePath = c.getBaseAddressDerivationPath();
     const config = configService.getSync().wallet.settings;
-    vm.walletName = c.walletName;
+    vm.walletName = profileService.focusedClient.credentials.walletName;
     vm.walletId = c.walletId;
     vm.network = c.network;
     vm.derivationStrategy = c.derivationStrategy || 'BIP44';
@@ -30,7 +30,6 @@
     vm.isSingleAddressWallet = () => fc.isSingleAddress;
     vm.setAddress = setAddress;
     vm.sendAddrs = sendAddrs;
-
 
     function sendAddrs() {
       const self = this;

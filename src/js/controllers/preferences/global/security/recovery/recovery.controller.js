@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-useless-concat,import/no-extraneous-dependencies,no-shadow */
 (() => {
   'use strict';
@@ -21,8 +22,34 @@
     } catch (e) {
       ecdsa = require('core/node_modules/secp256k1' + '');
     }
-    const Mnemonic = require('bitcore-mnemonic');
-    const Bitcore = require('bitcore-lib');
+
+    let Bitcore;
+    try {
+      Bitcore = require('bitcore-lib');
+    } catch (err) {
+      console.log(`RecoveryCtrl Error: ${JSON.stringify(err)}`);
+      // strange hack for require bitcore
+      if (global._bitcore) {
+        delete global._bitcore;
+      }
+      Bitcore = require('bitcore-lib');
+    }
+
+    let Mnemonic;
+    try {
+      if (global._bitcore) {
+        delete global._bitcore;
+      }
+      Mnemonic = require('bitcore-mnemonic');
+    } catch (err) {
+      console.log(`RecoveryCtrl Error: ${JSON.stringify(err)}`);
+      // strange hack for require bitcore
+      if (global._bitcore) {
+        delete global._bitcore;
+      }
+      Mnemonic = require('bitcore-mnemonic');
+    }
+
     const db = require('core/db.js');
     const network = require('core/network');
     const myWitnesses = require('core/my_witnesses');

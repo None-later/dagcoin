@@ -5,9 +5,9 @@
     .module('copayApp.controllers')
     .controller('PreferencesAliasCtrl', PreferencesAliasCtrl);
 
-  PreferencesAliasCtrl.$inject = ['$scope', '$timeout', 'configService', 'profileService', 'go', 'gettextCatalog', 'lodash', 'utilityService', '$log'];
+  PreferencesAliasCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'configService', 'profileService', 'go', 'gettextCatalog', 'lodash', 'utilityService', '$log'];
 
-  function PreferencesAliasCtrl($scope, $timeout, configService, profileService, go, gettextCatalog, lodash, utilityService, $log) {
+  function PreferencesAliasCtrl($scope, $rootScope, $timeout, configService, profileService, go, gettextCatalog, lodash, utilityService, $log) {
     const vm = this;
     const config = configService.getSync();
     const fc = profileService.focusedClient;
@@ -43,12 +43,13 @@
         setError('Wallet with the same name already exists');
         return;
       }
-
+      profileService.updateWalletNameFC(() => {}, vm.alias.trim());
       configService.set(opts, (err) => {
         if (err) {
           $scope.$emit('Local/DeviceError', err);
           return;
         }
+
         $scope.$emit('Local/AliasUpdated');
         $timeout(() => {
           go.path('preferences');
