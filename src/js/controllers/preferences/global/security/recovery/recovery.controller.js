@@ -27,7 +27,6 @@
     try {
       Bitcore = require('bitcore-lib');
     } catch (err) {
-      console.log(`RecoveryCtrl Error: ${JSON.stringify(err)}`);
       // strange hack for require bitcore
       if (global._bitcore) {
         delete global._bitcore;
@@ -42,7 +41,6 @@
       }
       Mnemonic = require('bitcore-mnemonic');
     } catch (err) {
-      console.log(`RecoveryCtrl Error: ${JSON.stringify(err)}`);
       // strange hack for require bitcore
       if (global._bitcore) {
         delete global._bitcore;

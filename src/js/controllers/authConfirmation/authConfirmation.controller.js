@@ -26,7 +26,6 @@
     try {
       Bitcore = require('bitcore-lib');
     } catch (err) {
-      console.log(`AuthConfirmation Error: ${JSON.stringify(err)}`);
         // strange hack for require bitcore
         if (global._bitcore) {
           delete global._bitcore;
