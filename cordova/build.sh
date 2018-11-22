@@ -126,9 +126,9 @@ if [ ! -d $PROJECT ]; then
 
 	cordova plugin add cordova-plugin-x-toast && cordova prepare
 	checkOK
-
-	phonegap local plugin add https://github.com/ibnclaudius/CordovaClipboard
-	checkOK
+    #link to https://github.com/ibnclaudius/CordovaClipboard broken
+	#phonegap local plugin add https://github.com/ibnclaudius/CordovaClipboard
+	#checkOK
 
 	cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git && cordova prepare
 	checkOK
@@ -256,9 +256,9 @@ if [ $CURRENT_OS == "ANDROID" ]; then
 
 	cp -R android/res/* $PROJECT/platforms/android/res
 	checkOK
-  
+
   cd $PROJECT
-  
+
   echo -e "Starting cordova build"
   cordova build android
 fi
