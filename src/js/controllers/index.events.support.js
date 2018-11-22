@@ -155,10 +155,13 @@ function IndexEventsSupport(params) {
         return;
       }
       const walletName = client.credentials.walletName;
-      profileService.updatePublicKeyRing(client);
+      // we update public key on wallet complete
+      // profileService.updatePublicKeyRing(client);
       const device = require('core/device.js');
       device.readCorrespondent(deviceAddress, (correspondent) => {
-        notification.success(gettextCatalog.getString('Success'), gettextCatalog.getString(`Wallet ${walletName} approved by ${correspondent.name}`));
+        // we need to call success notification only after wallet creation complete
+        // notification.success(gettextCatalog.getString('Success'), gettextCatalog.getString(`Wallet ${walletName} approved by ${correspondent.name}`));
+        console.log(`Wallet approved success! Wallet ${walletName} approved by ${correspondent.name}`);
       });
       if (cb) cb();
     });
