@@ -20,6 +20,7 @@
     vm.cosigners = []; // Array(vm.totalCosignersNumber);
     vm.requiredCosignersNumber = 0;
 
+
     for (let i = 0; i < vm.totalCosignersNumber - 1; i += 1) {
       vm.cosigners.push({});
     }
