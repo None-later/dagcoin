@@ -51,6 +51,7 @@
               self.error = gettextCatalog.getString('Passwords do not match');
               return;
             }
+            self.isVerification = false;
           }
           cb(null, self.password);
         };
