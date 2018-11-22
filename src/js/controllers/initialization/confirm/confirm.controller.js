@@ -27,9 +27,9 @@
       }, 100);
     };
 
-    vm.showTermsOfUse = (state) => {
+    vm.showTermsOfUse = (checkboxState) => {
       // quick fix due to angularjs checkbox issue
-      vm.finish = !state;
+      vm.finish = !checkboxState;
       ngDialog.open({
         template: `<div class="navbar-container invert">
                     <div class="navbar-container-triggers">
