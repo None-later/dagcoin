@@ -31,6 +31,12 @@
               const message = `${gettextCatalog.getString('Download completed')} : ${fileName}`;
               $rootScope.$emit('Local/ShowAlert', message, 'fi-check', () => { });
             },
+            (reason) => {
+              $rootScope.$emit('Local/generatingCSV', false);
+              $rootScope.$apply();
+              const message = `${gettextCatalog.getString('Download canceled')} : ${reason}`;
+              $rootScope.$emit('Local/ShowAlert', message, 'fi-check', () => { });
+            },
             (err) => {
               $rootScope.$emit('Local/generatingCSV', false);
               $rootScope.$emit('Local/ShowAlert', JSON.stringify(err), 'fi-alert', () => { });

@@ -22,8 +22,9 @@
      * @param unitValue
      * @param successCb fileName is sent as parameter
      * @param failureCb error is send as parameter
+     * @param cancelCb cancel is send as parameter
      */
-    function toCsvFile(currentWallet, fc, unitValue, successCb, failureCb) {
+    function toCsvFile(currentWallet, fc, unitValue, successCb, cancelCb, failureCb) {
       const isMobile = utilityService.isMobile();
       const CSV_CONTENT_ID = '__csv_content';
 
@@ -39,14 +40,19 @@
       function saveFile(name, data) {
         const chooser = document.querySelector(name);
         setCsvContent(data);
-        chooser.removeEventListener('change', () => {
+        chooser.removeEventListener('change', () => {});
+        chooser.addEventListener('cancel', (evt) => {
+          $log.debug(evt);
+          const reason = 'by user.';
+          cancelCb(reason);
         });
         chooser.addEventListener('change', function (evt) {
+          console.debug('saveFile');
           const fs = require('fs');
           const csvElement = document.getElementById(CSV_CONTENT_ID);
-          const csvContent = csvElement !== null
-            ? document.getElementById(CSV_CONTENT_ID).value
-            : `Textarea element with id=${CSV_CONTENT_ID} not exits in DOM`;
+          const csvContent = csvElement !== null ?
+            document.getElementById(CSV_CONTENT_ID).value :
+            `Textarea element with id=${CSV_CONTENT_ID} not exits in DOM`;
           const fileName = this.value;
           fs.writeFile(this.value, csvContent, (err) => {
             if (err) {
@@ -58,6 +64,7 @@
               successCb(fileName);
             }
           });
+
           this.value = '';
         }, false);
         chooser.click();
@@ -147,6 +154,12 @@
             }, errorCallback);
           }, errorCallback);
         }, errorCallback);
+
+        window.addEventListener('cancel', (evt) => {
+          $log.debug(evt);
+          const reason = 'by user.';
+          cancelCb(reason);
+        });
       }
 
       const isNode = nodeWebkit.isDefined();
@@ -203,6 +216,11 @@
             link.setAttribute('href', encodedUri);
             link.setAttribute('download', filename);
             link.click();
+            link.addEventListener('cancel', (evt) => {
+              $log.debug(evt);
+              const reason = 'by user.';
+              cancelCb(reason);
+            });
           }
         });
       });
